@@ -1,39 +1,34 @@
-# F1 SAW
-Web App with the aim of grouping everything useful about Formula 1
-
-*keys.ini* file with setup keys inside is required 
-to work properly with the DB (MySQL) and the [AWS-S3](https://aws.amazon.com/it/s3/) storage
-
-For a proper presentation we suggest to view [F1 SAW](./F1_SAW.pdf)
-
-**NB**: **ACADEMIC** purposes only
-<hr>
+# 🛜 F1-WEBAPP
+**NB**: **PERSONAL** purposes only
 
 ### What you can do
-- virtually buy products in the **STORE**
-- keep yourself updated with the most recent **NEWS** 
-- navigate in different **STATISTICS**, such as Drivers, Teams, Calendar and GP results (from 1950 to today).
-- if you are an **ADMIN**, you can manage the store and users data, and email the users who subscribed to the newsletter
+🛍️ Virtually buy products in the **STORE** <br>
+📰 Keep yourself updated with the most recent **NEWS** <br>
+🧑‍💼 If you are an **ADMIN**, you can manage the store and users data, and email the users who subscribed to the newsletter <br>
 
 The news, teams and drivers lists are fetched through **web-scraping**
 <hr>
 
-### How
-Back-end: PHP (and PHPMailer) / AWS-S3 / MySQL
+### HOW
+🧑‍💻 Back-end ➡️ PHP (and PHPMailer) / AWS-S3 / MySQL
 <br>
-Front-end: JS / CSS / Bootstrap / HTML
+🧑‍💻 Front-end ➡️ JS / CSS / Bootstrap / HTML
+
 <hr>
 
 ### USAGE
-- ```git clone --recursive-submodule {.git}```
-- ```git submodule update --init --recursive```
-- ```git submodule update --remote```
+*keys.ini* file with setup keys inside is required to work properly with the DB (MySQL) and the [AWS-S3](https://aws.amazon.com/it/s3/) storage
+
+### `git clone --recurse-submodules https://github.com/matteonaccarato/f1-webapp.git`
+Clones repository and PHPMailer submodule
+
+### `git pull --recurse-submodules`
+Updates submodules
 
 
-### SOURCES:
-- [Formula 1](https://www.formula1.com/)
-- [Open Weather Map](https://openweathermap.org/api)
-- [AWS-S3](https://aws.amazon.com/it/s3/)
+### SOURCES
+☀️ [**OpenWeatherMap**](https://openweathermap.org/api) <br>
+🏎️ [**Formula 1**](https://www.formula1.com/) <br>
 
 <hr>
 
