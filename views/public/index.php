@@ -90,7 +90,9 @@ $json_cards_data = json_decode($json, true);
                         News
                         <span class="material-symbols-outlined text-danger">download</span>
                     </span>
-                    (provided by <a href="<?php echo BASE_URL; ?>" target="_blank" class="text-info text-decoration-none">formula1.com</a>)
+                    (provided by <a href="<?php echo BASE_URL; ?>" target="_blank" class="text-info text-decoration-none">
+                        <?php echo $loadFromDisk ? "backup" : "formula1.com"; ?>
+                    </a>)
                 </span>
                 <?php echo_news_cards($title_list, $img_list, $link_list, MAX_NEWS_INDEX, COL_CARD); ?>
             </div>
@@ -131,7 +133,9 @@ $json_cards_data = json_decode($json, true);
                 </div>
 
                 <div class="mt-5 who-we-are">
-                    <h2>Who we are</h2>
+                    <h2>Who we are
+                        <span class="material-symbols-outlined text-danger">sports_martial_arts</span>
+                    </h2>
                     <hr>
                     <div>
                         F1 INFO was born from two passionates about Formula 1.<br>

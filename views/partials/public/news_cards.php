@@ -8,12 +8,11 @@
                     </div>
                     <div class="card-body d-flex align-items-end">
                         <div class="w-100">
-                            <h6 class="card-title text-danger"><?php echo htmlentities($title_list[$i][1]); ?></h6>
+                            <h6 class="card-title text-danger"><?php echo htmlentities($title_list[$i]); ?></h6>
                             <hr>
                             <p class="card-text d-flex justify-content-between">
                                 <label>
-                                    <strong><?php echo htmlentities($title_list[$i][0]); ?></strong>
-                                    <?php echo htmlentities($title_list[$i][2]?? ""); ?>
+                                    <strong>NEWS</strong>
                                 </label>
                                 <a target="_blank" href="<?php echo htmlentities($link_list[$i]); ?>" class="card-link text-decoration-none d-flex flex-row justify-content-end">
                                     <span class="my_outline_animation d-flex flex-row gap-2 pb-1 hover-red">

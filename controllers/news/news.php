@@ -38,37 +38,17 @@ function f1_scrape_news($base_url): array {
         $img_list[] = $link;
     }
 
-    $node_list = $xpath->query('//figcaption[@class="px-5 tablet:pt-2 tablet:pb-[3rem] relative tablet:pt-2 tablet:pb-[3rem] transition-transform relative text-left col-span-3 tablet:col-span-5 group-hover:tablet:bg-carbonBlack group-focus:bg-carbonBlack    duration-300 group-hover:tablet:-translate-y-3 group-focus:tablet:-translate-y-3       "]');
+    // $node_list = $xpath->query('//figcaption[@class="px-5 tablet:pt-2 tablet:pb-[3rem] relative tablet:pt-2 tablet:pb-[3rem] transition-transform relative text-left col-span-3 tablet:col-span-5 group-hover:tablet:bg-carbonBlack group-focus:bg-carbonBlack    duration-300 group-hover:tablet:-translate-y-3 group-focus:tablet:-translate-y-3       "]');
+    $node_list = $xpath->query('//p[@class="font-titillium leading-none text-left text-12 group-hover:text-white group-focus:text-white leading-loose mt-1 text-16 font-light tablet:!text-18 tablet:!font-formula !leading-5 tablet:!leading-6         "]');
+
     foreach ($node_list as $n) {
         $title = $n->nodeValue;
-
-        /*
-        Replace blank spaces in the read string, the limit of the replacements is just 2
-            - Limit 2 imposed to obtain this situation (not affect the title)
-                "News {title}" => ";News;{title}"
-        */
-        $title = preg_replace("/\s+/", ";", $title, 2);
-        $title = explode(";", $title);
-        /*
-        Case analysis: "Feature;F1 Unlocked {text}"
-            - index 2 to identify "F1 Unlocked {text}"
-            - if there is "F1 Unlocked" then I sign it in a cell called title[3], otherwise it will be null
-        */
-        if (str_contains($title[2], "F1 Unlocked")) {
-            $title[2] = preg_replace("/F1 Unlocked/", "", $title[2]);
-            $title[3] = "F1 Unlocked";
-        } else {
-            $title[3] = null;
-        }
-        // example: ["News", "F1 Unlocked", "{title}"]
-        // or: ["Feature", null, "{title}"]
-        $title = [$title[1], $title[2], $title[3]];
         $title_list[] = $title;
     }
 
-    $node_list = $xpath->query('//div[@class=" group w-full list-none focus-within:outline-blue-700 focus-within:bg-carbonBlack focus-within:outline focus-within:outline-2 leading-none tablet:rounded-b-2xl tablet:bg-white border-b-2 tablet:border-b-0 tablet:!border-0 tablet:py-0  bg-white hover:bg-carbonBlack focus:desktop:bg-carbonBlack        "]//a');
+    $node_list = $xpath->query('//a[@class="group group-hover:bg-carbonBlack block border-gray-30 tablet:!border-0 py-4 tablet:py-0 tablet:rounded-b-2xl tablet:grid-rows-auto overflow-hidden outline-none grid grid-cols-5 tablet:grid-cols-none bg-transparent tablet:bg-white hover:bg-carbonBlack focus:bg-carbonBlack      bg-black tablet:!bg-carbon-black   "]');
     foreach ($node_list as $n) {
-        $link = $base_url . $n->getAttribute("href");
+        $link = $n->getAttribute("href");
         $link_list[] = $link;
     }
 

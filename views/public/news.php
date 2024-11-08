@@ -54,7 +54,9 @@ else
                     News
                     <span class="material-symbols-outlined text-danger">download</span>
                 </span>
-                (provided by <a href="<?php echo BASE_URL; ?>" target="_blank" class="text-info text-decoration-none">formula1.com</a>)
+                (provided by <a href="<?php echo BASE_URL; ?>" target="_blank" class="text-info text-decoration-none">
+                    <?php echo $loadFromDisk ? "backup" : "formula1.com"; ?>
+                </a>)
             </span>
             <?php if (count($title_list) > 0) {
                 echo_news_cards($title_list, $img_list, $link_list, MAX_NEWS_NEWS, COL_CARD);

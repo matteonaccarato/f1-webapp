@@ -5,7 +5,7 @@
     "circuit_name":" Bahrain International Circuit",
     "circuit_place":"Bahrain",
     "race_date":"2 March",
-    "img_url":"https:\/\/matraxlubricants.com\/wp-content\/uploads\/2019\/03\/sakir2.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/sakir.jpg"
   },
   {
     "round":2,
@@ -13,7 +13,7 @@
     "circuit_name":" Jeddah Corniche Circuit",
     "circuit_place":"Jeddah",
     "race_date":"9 March",
-    "img_url":"https:\/\/yachtharbour.com\/static\/uploads\/5166_58e85.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/saudi2.jpg"
   },
   {
     "round":3,
@@ -21,7 +21,7 @@
     "circuit_name":" Albert Park Circuit",
     "circuit_place":"Melbourne",
     "race_date":"24 March",
-    "img_url":"https:\/\/www.telegraph.co.uk\/content\/dam\/travel\/2023\/05\/15\/TELEMMGLPICT000335701757_trans_NvBQzQNjv4BqpVlberWd9EgFPZtcLiMQf0Rf_Wk3V23H2268P_XkPxc.jpeg"
+    "img_url":"/f1-webapp/assets/images/circuits/australia.jpg"
   },
   {
     "round":4,
@@ -29,7 +29,7 @@
     "circuit_name":" Suzuka International Racing Course",
     "circuit_place":"Suzuka",
     "race_date":"7 April",
-    "img_url":"https:\/\/www.racefans.net\/wp-content\/uploads\/2019\/10\/racefansdotnet-20191011-022628-10.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/japan.jpg"
   },
   {
     "round":5,
@@ -37,7 +37,7 @@
     "circuit_name":" Shanghai International Circuit",
     "circuit_place":"Shanghai",
     "race_date":"21 April",
-    "img_url":"https:\/\/media.formula1.com\/image\/upload\/content\/dam\/fom-website\/manual\/Misc\/2022manual\/2022Races\/AbuDhabiGP\/Post-race\/Chinese%20Grand%20Prix.jpg.transform\/9col\/image.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/china.jpg"
   },
   {
     "round":6,
@@ -45,7 +45,7 @@
     "circuit_name":" Miami International Autodrome",
     "circuit_place":"Florida",
     "race_date":"5 May",
-    "img_url":"https:\/\/s40320.pcdn.co\/wp-content\/uploads\/2022\/05\/220504-F1Aerials-pm173.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/miami.jpg"
   },
   {
     "round":7,
@@ -53,7 +53,7 @@
     "circuit_name":" Imola Circuit",
     "circuit_place":"Imola",
     "race_date":"19 May",
-    "img_url":"https:\/\/tercerequipo.com\/wp-content\/uploads\/2023\/05\/Previo-Imola-Portada.jpeg"
+    "img_url":"/f1-webapp/assets/images/circuits/imola.jpeg"
   },
   {
     "round":8,
@@ -61,7 +61,7 @@
     "circuit_name":" Circuit de Monaco",
     "circuit_place":"Monaco",
     "race_date":"26 May",
-    "img_url":"https:\/\/media.formula1.com\/image\/upload\/content\/dam\/fom-website\/manual\/Misc\/2021manual\/MonacoManualAdds\/GettyImages-1151834459.jpg.transform\/9col\/image.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/monaco.jpg"
   },
   {
     "round":9,
@@ -69,7 +69,7 @@
     "circuit_name":" Circuit Gilles Villeneuve",
     "circuit_place":"Montreal",
     "race_date":"9 June",
-    "img_url":"https:\/\/www.airtransat.com\/getmedia\/cafc7e6e-d0ff-497e-9998-e708f41aa191\/Montreal-estival.aspx"
+    "img_url":"/f1-webapp/assets/images/circuits/canada.jpg"
   },
   {
     "round":10,
@@ -77,7 +77,7 @@
     "circuit_name":" Circuit de Barcelona-Catalunya",
     "circuit_place":"Montmel\u00f3",
     "race_date":"23 June",
-    "img_url":"https:\/\/trthaberstatic.cdn.wp.trt.com.tr\/resimler\/2054000\/formula-1-barcelona-aa-2055032.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/spain.jpg"
   },
   {
     "round":11,
@@ -85,7 +85,7 @@
     "circuit_name":" Red Bull Ring",
     "circuit_place":"Spielberg",
     "race_date":"30 June",
-    "img_url":"https:\/\/cdn-imgix.headout.com\/media\/images\/5f9dda343ba2f2f08c9e217c1f2f2def-20159-spielberg-formula-1--austrian-grand-prix-2023---3-days-pass-04.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/austria.jpg"
   },
   {
     "round":12,
@@ -93,7 +93,7 @@
     "circuit_name":" Silverstone Circuit",
     "circuit_place":"Silverstone",
     "race_date":"7 July",
-    "img_url":"https:\/\/www.si.com\/.image\/t_share\/MTk5MDk5OTU2OTM2NTgzMTI0\/m276355-2.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/british.jpg"
   },
   {
     "round":13,
@@ -101,7 +101,7 @@
     "circuit_name":" Hungaroring",
     "circuit_place":"Mogyor\u00f3d",
     "race_date":"21 July",
-    "img_url":"https:\/\/cdn-6.motorsport.com\/images\/amp\/6AEJEND6\/s1000\/valtteri-bottas-mercedes-w12-c.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/hungary.jpg"
   },
   {
     "round":14,
@@ -109,7 +109,7 @@
     "circuit_name":" Circuit de Spa-Francorchamps",
     "circuit_place":"Stavelot",
     "race_date":"28 July",
-    "img_url":"https:\/\/i.ytimg.com\/vi\/l9zf8JBi66c\/maxresdefault.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/belgium.jpg"
   },
   {
     "round":15,
@@ -117,7 +117,7 @@
     "circuit_name":" Circuit Zandvoort",
     "circuit_place":"Zandvoort",
     "race_date":"25 August",
-    "img_url":"https:\/\/media.formula1.com\/image\/upload\/content\/dam\/fom-website\/sutton\/2022\/Netherlands\/Sunday\/1420740118.jpg.transform\/9col\/image.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/netherlands.jpg"
   },
   {
     "round":16,
@@ -125,7 +125,7 @@
     "circuit_name":" Monza Circuit",
     "circuit_place":"Monza",
     "race_date":"1 September",
-    "img_url":"https:\/\/www.autoracing1.com\/wp-content\/uploads\/2022\/f1\/monza\/crowd-podium-e1682587708399.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/monza.jpg"
   },
   {
     "round":17,
@@ -133,7 +133,7 @@
     "circuit_name":" Baku City Circuit",
     "circuit_place":"Baku",
     "race_date":"15 September",
-    "img_url":"https:\/\/cdn-5.motorsport.com\/images\/amp\/6n9EBelY\/s1000\/formula-1-azerbaijan-gp-2022-c-2.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/azerbaijan.jpg"
   },
   {
     "round":18,
@@ -141,7 +141,7 @@
     "circuit_name":" Marina Bay Street Circuit",
     "circuit_place":"Singapore",
     "race_date":"22 September",
-    "img_url":"https:\/\/singaporegp.sg\/media\/2023\/press-release\/20230917\/sunday-round-up.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/singapore.jpg"
   },
   {
     "round":19,
@@ -149,7 +149,7 @@
     "circuit_name":" Circuit of the Americas",
     "circuit_place":"Austin",
     "race_date":"20 October",
-    "img_url":"https:\/\/cdn.imago-images.com\/bild\/sp\/1016977778\/s.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/usa.jpg"
   },
   {
     "round":20,
@@ -157,7 +157,7 @@
     "circuit_name":" Aut\u00f3dromo Hermanos Rodr\u00edguez",
     "circuit_place":"Mexico City",
     "race_date":"27 October",
-    "img_url":"https:\/\/d3cm515ijfiu6w.cloudfront.net\/wp-content\/uploads\/2022\/10\/26140516\/foro-sol-2021-mexico-city-grand-prix-planet-f1.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/mexico.jpg"
   },
   {
     "round":21,
@@ -165,7 +165,7 @@
     "circuit_name":" Interlagos Circuit",
     "circuit_place":"S\u00e3o Paulo",
     "race_date":"3 November",
-    "img_url":"https:\/\/cdn-8.motorsport.com\/images\/amp\/6D1WWdw0\/s1000\/formula-1-brazilian-gp-2023-si-2.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/brazil.jpg"
   },
   {
     "round":22,
@@ -173,7 +173,7 @@
     "circuit_name":" Las Vegas Strip Circuit",
     "circuit_place":"Las Vegas",
     "race_date":"23 November",
-    "img_url":"https:\/\/assets.bwbx.io\/images\/users\/iqjWHBFdfxIU\/iWapV.d4VkgQ\/v0\/-1x-1.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/lasvegas.jpg"
   },
   {
     "round":23,
@@ -181,7 +181,7 @@
     "circuit_name":" Lusail International Circuit",
     "circuit_place":"Lusail",
     "race_date":"1 December",
-    "img_url":"https:\/\/cdn-6.motorsport.com\/images\/amp\/YEQaWjMY\/s1000\/sergio-perez-red-bull-racing-r.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/qatar.jpg"
   },
   {
     "round":24,
@@ -189,6 +189,6 @@
     "circuit_name":" Yas Marina Circuit",
     "circuit_place":"Abu Dhabi",
     "race_date":"8 December",
-    "img_url":"https:\/\/media.formula1.com\/image\/upload\/content\/dam\/fom-website\/2018-redesign-assets\/Racehub%20header%20images%2016x9\/Abu%20Dhabi.jpg"
+    "img_url":"/f1-webapp/assets/images/circuits/abudhabi.jpg"
   }
 ]
