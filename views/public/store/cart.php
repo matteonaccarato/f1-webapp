@@ -18,10 +18,10 @@ require_once ("DB/DB.php");
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/store/store.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/store/cart.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/store/store.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/store/cart.css">
 </head>
 
 <body class=" bg-dark">
@@ -64,7 +64,7 @@ require_once ("DB/DB.php");
         <div id="cart-empty-alert" class="d-none mx-auto alert alert-no-data border-light fade show d-flex flex-column justify-content-center align-items-center mt-4 col-12" role="alert">
             <div class="mx-2 h2">Your cart is empty :(</div>
             <label class="lbl-shop">
-                <a href="/f1_project/views/public/store/store.php" class="text-decoration-none"><strong>Click here</strong></a> to go to the shop
+                <a href="/f1-webapp/views/public/store/store.php" class="text-decoration-none"><strong>Click here</strong></a> to go to the shop
             </label>
         </div>
 
@@ -72,7 +72,7 @@ require_once ("DB/DB.php");
         <div id="second-body" class="d-none">
             <hr class="rounded mt-5">
             <div class="row d-flex justify-content-between gap-3 mt-4">
-                <form action="/f1_project/controllers/orders/create.php" id="form-loading" method="POST" class="col-12 col-lg-5 mb-3 d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start align-items-center gap-sm-2 gap-xxl-4">
+                <form action="/f1-webapp/controllers/orders/create.php" id="form-loading" method="POST" class="col-12 col-lg-5 mb-3 d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start align-items-center gap-sm-2 gap-xxl-4">
 
                     <label for="ids"></label>
                     <input type="text" class="d-none" name="ids" id="ids" value="" >
@@ -118,7 +118,7 @@ require_once ("DB/DB.php");
     </main>
 </div>
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/navbar.js"></script>
-<script src="/f1_project/assets/js/store/cart.js"></script>
+<script src="/f1-webapp/assets/js/navbar.js"></script>
+<script src="/f1-webapp/assets/js/store/cart.js"></script>
 </body>
 </html>

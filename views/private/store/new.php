@@ -10,20 +10,20 @@ require_once("views/partials/alert.php");
 
 [$login_allowed, $user] = check_cookie();
 if (!check_admin_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/views/private/store/new.php";
-    error("401", "not_authorized", "\\views\private\store\\new.php", "/f1_project/views/public/auth/login.php", "Unauthorized access.");
+    $_SESSION['redirection'] = "/f1-webapp/views/private/store/new.php";
+    error("401", "not_authorized", "\\views\private\store\\new.php", "/f1-webapp/views/public/auth/login.php", "Unauthorized access.");
     exit;
 }
 set_session($user);
 
-$conn = DB::connect("\\views\private\store\\new.php", "/f1_project/views/private/users/all.php");
+$conn = DB::connect("\\views\private\store\\new.php", "/f1-webapp/views/private/users/all.php");
 [$num_teams, $teams] = DB::stmt_get_record_by_field($conn,
     "SELECT * FROM Teams;",
     "\\views\private\store\\new.php",
-    "/f1_project/views/private/users/all.php");
+    "/f1-webapp/views/private/users/all.php");
 
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\private\store\\new.php", "/f1_project/views/private/users/all.php");
+    error("500", "conn_close()", "\\views\private\store\\new.php", "/f1-webapp/views/private/users/all.php");
     exit;
 }
 ?>
@@ -38,9 +38,9 @@ if (!$conn->close()) {
     <?php include ("views/partials/toggle_head.php"); ?>
 
     <!--modificare la navbar-->
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/admin/product_new.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/admin/product_new.css">
 </head>
 
 <body class="vh-100 bg-dark">
@@ -50,7 +50,7 @@ if (!$conn->close()) {
     <div class="container-fluid row d-flex flex-row justify-content-center align-items-center gap-3 mt-5">
         <div class="col-12 col-md-10">
 
-            <form action="/f1_project/controllers/store/create.php" enctype="multipart/form-data" id="form-loading" class="container col-12 col-xl-6 py-3 border border-3 border-danger rounded" method="POST">
+            <form action="/f1-webapp/controllers/store/create.php" enctype="multipart/form-data" id="form-loading" class="container col-12 col-xl-6 py-3 border border-3 border-danger rounded" method="POST">
 
                 <?php err_msg_alert(); ?>
                 <?php succ_msg_alert(); ?>
@@ -218,7 +218,7 @@ if (!$conn->close()) {
                             <span class="material-symbols-outlined">add</span>
                             <strong>Create</strong>
                         </button>
-                        <a href="/f1_project/views/private/store/all.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
+                        <a href="/f1-webapp/views/private/store/all.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
                             <span class="material-symbols-outlined">fast_rewind</span>
                             <span class="d-inline d-sm-none d-xxl-inline">Discard</span>
                         </a>
@@ -239,12 +239,12 @@ if (!$conn->close()) {
     </div>
 
     <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/validators/products.js"></script>
+<script src="/f1-webapp/assets/js/validators/products.js"></script>
 <script src="https://benalman.com/code/projects/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
-<script src="/f1_project/assets/js/store/crud.js"></script>
-<script src="/f1_project/assets/js/loading-crud.js"></script>
-<script src="/f1_project/assets/js/image_upload.js"></script>
-<script src="/f1_project/assets/js/tooltip.js"></script>
+<script src="/f1-webapp/assets/js/store/crud.js"></script>
+<script src="/f1-webapp/assets/js/loading-crud.js"></script>
+<script src="/f1-webapp/assets/js/image_upload.js"></script>
+<script src="/f1-webapp/assets/js/tooltip.js"></script>
 
 </body>
 </html>

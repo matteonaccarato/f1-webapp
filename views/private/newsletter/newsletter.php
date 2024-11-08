@@ -8,8 +8,8 @@ require_once ("views/partials/alert.php");
 
 [$login_allowed, $user] = check_cookie();
 if (!check_admin_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/views/private/newsletter/newsletter.php";
-    error("401", "not_authorized", "\\views\private\\newsletter\\newsletter.php", "/f1_project/views/public/auth/login.php", "Unauthorized access.");
+    $_SESSION['redirection'] = "/f1-webapp/views/private/newsletter/newsletter.php";
+    error("401", "not_authorized", "\\views\private\\newsletter\\newsletter.php", "/f1-webapp/views/public/auth/login.php", "Unauthorized access.");
     exit;
 }
 ?>
@@ -22,10 +22,10 @@ if (!check_admin_auth($user)) {
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/loading.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/admin/newsletter.css">
-    <script src="/f1_project/assets/js/newsletter.js" defer></script>
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/loading.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/admin/newsletter.css">
+    <script src="/f1-webapp/assets/js/newsletter.js" defer></script>
 </head>
 <body class="bg-dark">
 <div class="container-fluid">
@@ -39,7 +39,7 @@ if (!check_admin_auth($user)) {
                 <?php err_msg_alert(); ?>
                 <?php succ_msg_alert(); ?>
 
-                <form id="newsletter" action="/f1_project/controllers/newsletter/send_email.php" method="post">
+                <form id="newsletter" action="/f1-webapp/controllers/newsletter/send_email.php" method="post">
                         <span class="d-flex justify-content-center">
                             <label for="subject" class="form-label d-flex gap-2">
                                 <span class="material-symbols-outlined text-danger">mail</span>

@@ -25,6 +25,9 @@ Clones repository and PHPMailer submodule
 ### `git pull --recurse-submodules`
 Updates submodules
 
+### `composer install`
+Install useful dependencies
+
 
 ### SOURCES
 ☀️ [**OpenWeatherMap**](https://openweathermap.org/api) <br>

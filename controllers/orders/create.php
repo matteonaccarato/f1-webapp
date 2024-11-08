@@ -26,12 +26,12 @@ if (check_user_auth($user)) {
         $address = preg_replace('/\s+/', ' ', $_POST["address"]);
 
         if (preg_match('/^\s*$/',$address)) {
-            error("500", "Address is empty.", "\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+            error("500", "Address is empty.", "\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
             exit;
         }
 
         /* DB */
-        $conn = DB::connect("\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+        $conn = DB::connect("\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
 
         try {
             $order_id = generate_random_string(5);
@@ -52,7 +52,7 @@ if (check_user_auth($user)) {
                 || $prices_array[$i] == null || preg_match('/^\s*$/', $prices_array[$i])
                 // || $imgs_array[$i] == null || preg_match('/^\s*$/', $imgs_array[$i])
                 || $titles_array[$i] == null || preg_match('/^\s*$/', $titles_array[$i])) {
-                    error("500", "Some fields are empty.", "\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+                    error("500", "Some fields are empty.", "\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
                     exit;
                 }
             }
@@ -63,7 +63,7 @@ if (check_user_auth($user)) {
                 ["s", "i", "s", "s", "i"],
                 [$order_id, $user["Users.id"]??$_SESSION["id"], (new DateTime())->format('Y-m-d H:i:s'), $address, $total],
                 "\controller\orders\create.php",
-                "/f1_project/views/public/store/cart.php");
+                "/f1-webapp/views/public/store/cart.php");
 
             for ($i = 0; $i < count($products_id_array) - 1; $i++) {
 
@@ -74,7 +74,7 @@ if (check_user_auth($user)) {
                     ["s", "i", "s", "i", "i"],
                     [$order_id, $products_id_array[$i], $sizes_array[$i], $quantities_array[$i], $prices_array[$i]],
                     "\controller\orders\create.php",
-                    "/f1_project/views/public/store/cart.php",
+                    "/f1-webapp/views/public/store/cart.php",
                     $order_id);
             }
 
@@ -103,29 +103,29 @@ if (check_user_auth($user)) {
             $body .= "Address: $address";
             $to = $user["Users.email"]??$_SESSION["email"];
             if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
-                error("-1", "EMAIL pattern NOT valid.", "\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+                error("-1", "EMAIL pattern NOT valid.", "\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
                 exit;
             }
             send_mail([$to], $subject, $body);
 
             if (!$conn->close()) {
-                error("500", "conn_close()", "\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+                error("500", "conn_close()", "\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
                 exit;
             }
 
             $_SESSION["success"] = 1;
             $_SESSION["success_msg"] = "Order created successfully";
-            header("Location: /f1_project/views/public/store/cart.php");
+            header("Location: /f1-webapp/views/public/store/cart.php");
 
         } catch (Exception $e) {
-            error("500", "Exception: $e", "\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+            error("500", "Exception: $e", "\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
         }
 
     } else {
-        error("500", "Fields not provided.", "\controller\orders\create.php", "/f1_project/views/public/store/cart.php");
+        error("500", "Fields not provided.", "\controller\orders\create.php", "/f1-webapp/views/public/store/cart.php");
     }
 } else {
-    $_SESSION['redirection'] = "/f1_project/controllers/orders/create.php";
-    error("401", "Unauthorised access!", "\controller\orders\create.php", "/f1_project/views/public/auth/login.php");
+    $_SESSION['redirection'] = "/f1-webapp/controllers/orders/create.php";
+    error("401", "Unauthorised access!", "\controller\orders\create.php", "/f1-webapp/views/public/auth/login.php");
 }
 exit;

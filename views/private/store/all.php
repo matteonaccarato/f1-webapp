@@ -11,23 +11,23 @@ require_once("views/partials/alert.php");
 
 [$login_allowed, $user] = check_cookie();
 if (!check_admin_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/views/private/store/all.php";
-    error("401", "not_authorized", "\\views\private\store\all.php", "/f1_project/views/public/auth/login.php", "Unauthorized access.");
+    $_SESSION['redirection'] = "/f1-webapp/views/private/store/all.php";
+    error("401", "not_authorized", "\\views\private\store\all.php", "/f1-webapp/views/public/auth/login.php", "Unauthorized access.");
     exit;
 }
 set_session($user);
 
-$conn = DB::connect("\\views\private\store\all.php", "f1_project/views/private/dashboard.php");
+$conn = DB::connect("\\views\private\store\all.php", "/f1-webapp/views/private/dashboard.php");
 [$num_products, $products] = DB::stmt_get_record_by_field($conn,
     "SELECT Products.id AS 'Products.id', Products.title AS 'Products.title', Products.price AS 'Products.price', Products.img_url AS 'Products.img_url', Products.alt AS 'Products.alt', 
                 Teams.name AS 'Teams.name' 
             FROM Products JOIN Teams ON Products.team_id = Teams.id
             ORDER BY Products.id DESC;",
     "\\views\private\store\all.php",
-    "f1_project/views/private/dashboard.php");
+    "/f1-webapp/views/private/dashboard.php");
 
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\private\store\all.php", "f1_project/views/private/dashboard.php");
+    error("500", "conn_close()", "\\views\private\store\all.php", "/f1-webapp/views/private/dashboard.php");
     exit;
 }
 ?>
@@ -40,8 +40,8 @@ if (!$conn->close()) {
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/admin/table_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/admin/table_style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
@@ -116,7 +116,7 @@ if (!$conn->close()) {
                                 </td>
 
                                 <td class='text-center delete-loading'>
-                                    <a href='/f1_project/controllers/store/delete.php/?id=<?php echo htmlentities($product["Products.id"]); ?>' class='my-auto d-flex align-items-center justify-content-center text-decoration-none'>
+                                    <a href='/f1-webapp/controllers/store/delete.php/?id=<?php echo htmlentities($product["Products.id"]); ?>' class='my-auto d-flex align-items-center justify-content-center text-decoration-none'>
                                         <span class='material-icons text-danger'>delete</span>
                                     </a>
                                 </td>
@@ -136,7 +136,7 @@ if (!$conn->close()) {
                 <?php } ?>
 
                 <div class="d-flex justify-content-end py-3">
-                    <form method="get" action="/f1_project/views/private/store/new.php" class="text-decoration-none">
+                    <form method="get" action="/f1-webapp/views/private/store/new.php" class="text-decoration-none">
                         <button class="btn btn-reverse-color rounded btn btn-danger d-flex justify-content-center align-items-center gap-2">
                             <span class="material-symbols-outlined">add</span>
                             <span>Create</span>
@@ -151,6 +151,6 @@ if (!$conn->close()) {
     </div>
 
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/loading-crud.js"></script>
+<script src="/f1-webapp/assets/js/loading-crud.js"></script>
 </body>
 </html>

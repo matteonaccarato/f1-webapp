@@ -31,8 +31,8 @@ else
     <title>Teams</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/info_cards.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/info_cards.css">
     <?php include("views/partials/head.php"); ?>
 </head>
 
@@ -79,7 +79,7 @@ else
 
 <?php include ("views/partials/footer.php"); ?>
 
-<script src="/f1_project/assets/js/navigate.js"></script>
+<script src="/f1-webapp/assets/js/navigate.js"></script>
 </body>
 </html>
 

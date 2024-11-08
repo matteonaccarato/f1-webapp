@@ -1,6 +1,6 @@
 function f1_scrape_info_drivers(id, url) {
     $(`#button${id}`).on("click", () => {
-        fetch(`http://localhost:63342/f1_project/controllers/drivers/info_drivers.php?url=${encodeURIComponent(url)}`)
+        fetch(`http://localhost:63342/f1-webapp/controllers/drivers/info_drivers.php?url=${encodeURIComponent(url)}`)
             .then(response => response.json())
             .then(data => {
                 // console.log(data);

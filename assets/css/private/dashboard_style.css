@@ -66,8 +66,17 @@ main {
     flex-grow: 3;
 }
 
+.full-size-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: inherit; /* Inherits size from parent container */
+    line-height: 1;
+    text-align: center; /* Centers icon if necessary */
+}
+
 .profile {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://wallpapercave.com/dwp2x/wp11174641.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/f1-webapp/assets/images/alonso-stroll.jpg");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
@@ -89,7 +98,7 @@ main {
 }
 
 .product {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/ferrari.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/f1-webapp/assets/images/alonso-1st-podium.jpg");
     background-size: cover;
     background-position: right;
     background-attachment: fixed;
@@ -101,7 +110,7 @@ main {
 }
 
 .table-users{
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://wallpapercave.com/dwp2x/wp12074922.png);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/f1-webapp/assets/images/am-box.jpg");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;

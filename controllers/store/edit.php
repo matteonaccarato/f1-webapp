@@ -44,7 +44,7 @@ if (check_admin_auth($user)) {
             $files = array_filter($_FILES['images-local']['name']);
             $total = count($_FILES["images-local"]["name"]);
             if ($total > MAX_NUMBER_FILES) {
-                error("-1", "Max number of files exceeded.", "\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+                error("-1", "Max number of files exceeded.", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
                 exit;
             }
 
@@ -52,7 +52,7 @@ if (check_admin_auth($user)) {
             foreach ($_FILES["images-local"]["name"] as $index => $filename) {
                 [$status, $statusMsg, $s3_file_link] = aws_s3_upload($filename, $file_temp_src[$index]);
                 if ($status == "danger") {
-                    error("-1", "AWS S3: $statusMsg.", "\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+                    error("-1", "AWS S3: $statusMsg.", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
                     exit;
                 }
                 // Save the uploaded image url in img_url array
@@ -66,20 +66,20 @@ if (check_admin_auth($user)) {
             || $title == "" || $title == " "
             || $price == "" || $price == " "
             || $team_id == "" || $team_id == " ") {
-            error("-1", "Empty input fields.", "\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+            error("-1", "Empty input fields.", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
             exit;
         }
 
         // REGEX PRICE xx.yy
         if (!preg_match("/^\d+([,.]\d{1,2})?$/", $price)) {
-            error("-1", "Price NOT valid.", "\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+            error("-1", "Price NOT valid.", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
             exit;
         }
         $price = preg_replace("/,/", ".", $price);
 
 
         /* DB */
-        $conn = DB::connect("\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+        $conn = DB::connect("\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
         $price = number_format($price, 2) * 100;
         $img_url_str = implode("\t", $img_url);
         $alt_str = implode("\t", $alts);
@@ -90,7 +90,7 @@ if (check_admin_auth($user)) {
         foreach ([$id, $title, $desc, $price, $img_url_str, $team_id, $color, $size, $alt_str] as $index => $input) {
             if (PRODUCTS_MAX_LENGTHS[$index] >= 0 && strlen($input) > PRODUCTS_MAX_LENGTHS[$index]) {
                 $tmp = ucfirst(PRODUCTS_ARRAY[$index]);
-                error("500", "$tmp is TOO long.", "\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+                error("500", "$tmp is TOO long.", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
                 exit;
             }
         }
@@ -99,23 +99,23 @@ if (check_admin_auth($user)) {
             "UPDATE Products SET title=?, description=?, price=?, img_url=?, team_id=?, color=?, size=?, alt=? WHERE id = ?",
             ["s", "s", "i", "s", "i", "s", "s", "s", "i"],
             [$title, $desc, $price, $img_url_str, $team_id, $color, $size, $alt_str, $id],
-            "\controllers\store\\update_profile.php",
-            "/f1_project/views/private/store/update_profile.php?id=$id");
+            "\controllers\store\\update.php",
+            "/f1-webapp/views/private/store/update.php?id=$id");
 
         if (!$conn->close()) {
-            error("500", "conn_close()", "\controllers\store\\edit.php", "/f1_project/views/private/store/edit.php?id=$id");
+            error("500", "conn_close()", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/edit.php?id=$id");
             exit;
         }
 
         $_SESSION["success"] = 1;
         $_SESSION["success_msg"] = "Product updated successfully";
-        header("Location: /f1_project/views/private/store/all.php");
+        header("Location: /f1-webapp/views/private/store/all.php");
 
     } else {
-        error("500", "Fields not provided.", "\controllers\store\\edit.php", "/f1_project/views/private/store/all.php");
+        error("500", "Fields not provided.", "\controllers\store\\edit.php", "/f1-webapp/views/private/store/all.php");
     }
 } else {
-    $_SESSION['redirection'] = "/f1_project/controllers/store/update_profile.php?id=${${$_POST['id']??''}}";
-    error("401", "Unauthorised access!", "\controllers\store\\edit.php", "/f1_project/views/public/auth/login.php");
+    $_SESSION['redirection'] = "/f1-webapp/controllers/store/update.php?id=${${$_POST['id']??''}}";
+    error("401", "Unauthorised access!", "\controllers\store\\edit.php", "/f1-webapp/views/public/auth/login.php");
 }
 exit;

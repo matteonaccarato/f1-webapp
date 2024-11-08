@@ -18,8 +18,8 @@ require_once("views/partials/alert.php");
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/log_reg_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/log_reg_style.css">
 </head>
 
 <?php
@@ -27,11 +27,11 @@ require_once("views/partials/alert.php");
 if (check_user_auth($user)) {
     set_session($user);
     if (check_admin_auth($user)) {
-        header("Location: /f1_project/views/private/users/all.php");
+        header("Location: /f1-webapp/views/private/users/all.php");
     } else {
         $_SESSION["err"] = 1;
         $_SESSION["err_msg"] = "Not allowed operation.";
-        header("Location: /f1_project/views/public/index.php");
+        header("Location: /f1-webapp/views/public/index.php");
     }
     exit;
 }
@@ -43,7 +43,7 @@ if (check_user_auth($user)) {
     <?php include("views/partials/navbar_log_reg.php"); ?>
 
     <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-        <form id="login-form" action="/f1_project/login.php" class="container-fluid container-element col-sm-6" method="POST">
+        <form id="login-form" action="/f1-webapp/controllers/auth/login.php" class="container-fluid container-element col-sm-6" method="POST">
 
             <div style="margin-left: 10px; margin-right: 10px">
                 <?php err_msg_alert(); ?>
@@ -93,7 +93,7 @@ if (check_user_auth($user)) {
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 d-flex flex-row gap-1 hover-red text-box">
-                        <a href="/f1_project/views/public/auth/lost_password.php" class="text-white text-decoration-none my_outline_animation mx-1 d-flex align-items-center justify-content-start gap-2 py-2">
+                        <a href="/f1-webapp/views/public/auth/lost_password.php" class="text-white text-decoration-none my_outline_animation mx-1 d-flex align-items-center justify-content-start gap-2 py-2">
                             <span style="margin-left: -5px" class="material-symbols-outlined">key_off</span>
                             <span>Forgot password<strong> ?</strong></span>
                         </a>
@@ -106,7 +106,7 @@ if (check_user_auth($user)) {
                         <span class="material-symbols-outlined text-light">login</span>
                         <strong>Sign in</strong>
                     </button>
-                    <a href="/f1_project/views/public/auth/registration.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
+                    <a href="/f1-webapp/views/public/auth/registration.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
                         <span class="material-symbols-outlined">how_to_reg</span>
                         <span class="d-inline d-xxl-inline">Register</span>
                     </a>
@@ -115,7 +115,7 @@ if (check_user_auth($user)) {
         </form>
     </div>
 </div>
-<script src="/f1_project/assets/js/validators/user.js"></script>
-<script src="/f1_project/assets/js/tooltip.js"></script>
+<script src="/f1-webapp/assets/js/validators/user.js"></script>
+<script src="/f1-webapp/assets/js/tooltip.js"></script>
 </body>
 </html>

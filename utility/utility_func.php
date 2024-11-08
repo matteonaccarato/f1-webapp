@@ -9,7 +9,7 @@
 function select_user($id) : array {
     unset($_SESSION['redirection']);
     if($id == null) {
-        $_SESSION['redirection'] = "/f1_project/show_profile.php";
+        $_SESSION['redirection'] = "/f1-webapp/views/private/users/show_profile.php";
         $id = $_SESSION["id"];
     }
 
@@ -19,9 +19,9 @@ function select_user($id) : array {
         ["i"],
         [$id],
         "\utility\utility_func.php",
-        "/f1_project/show_profile.php")[0];
+        "/f1-webapp/views/private/users/show_profile.php")[0];
     if (!$conn->close()) {
-        error("500", "conn_close()", "\utility\utility_func.php", "/f1_project/views/private/users/all.php");
+        error("500", "conn_close()", "\utility\utility_func.php", "/f1-webapp/views/private/users/all.php");
         exit;
     }
     

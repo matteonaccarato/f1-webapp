@@ -11,13 +11,13 @@ require_once("views/partials/alert.php") ;
 
 [$login_allowed, $user] = check_cookie();
 if (!check_user_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/views/private/orders/all.php";
-    error("401", "not_authorized", "\\views\private\orders\all.php", "/f1_project/views/public/auth/login.php", "Unauthorized access.");
+    $_SESSION['redirection'] = "/f1-webapp/views/private/orders/all.php";
+    error("401", "not_authorized", "\\views\private\orders\all.php", "/f1-webapp/views/public/auth/login.php", "Unauthorized access.");
     exit;
 }
 set_session($user);
 
-$conn = DB::connect("\\views\private\store\all.php", "/f1_project/views/private/dashboard.php");
+$conn = DB::connect("\\views\private\store\all.php", "/f1-webapp/views/private/dashboard.php");
 $orders = (array)DB::get_record_by_field($conn,
     "SELECT orders.id AS 'Orders.id', orders.date AS 'Orders.date', orders.amount AS 'Orders.amount', 
                 products.id AS 'Products.id', products.title AS 'Products.title', products.img_url AS 'Products.img_url', products.alt AS 'Products.alt',
@@ -30,11 +30,11 @@ $orders = (array)DB::get_record_by_field($conn,
     ["i"],
     [$user["Users.id"]??$_SESSION["id"]],
     "\\views\private\orders\all.php",
-    "/f1_project/views/private/dashboard.php");
+    "/f1-webapp/views/private/dashboard.php");
 $num_orders = count($orders);
 
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\private\orders\all.php", "/f1_project/views/private/dashboard.php");
+    error("500", "conn_close()", "\\views\private\orders\all.php", "/f1-webapp/views/private/dashboard.php");
     exit;
 }
 ?>
@@ -47,8 +47,8 @@ if (!$conn->close()) {
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/admin/table_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/admin/table_style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
 
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
@@ -102,7 +102,7 @@ if (!$conn->close()) {
                                     <?php echo htmlentities($order["Orders.id"]); ?>
                                 </th>
                                 <td class="text-center">
-                                    <a href="/f1_project/views/public/store/product.php?id=<?php echo htmlentities($order["Products.id"]); ?>" target="_blank" class="text-decoration-none"><?php echo $order["Products.title"] ?></a>
+                                    <a href="/f1-webapp/views/public/store/product.php?id=<?php echo htmlentities($order["Products.id"]); ?>" target="_blank" class="text-decoration-none"><?php echo $order["Products.title"] ?></a>
                                 </td>
                                 <td class="text-center">
                                     <?php echo htmlentities(strtoupper($order["Orders_Products.size"])); ?>
@@ -142,6 +142,6 @@ if (!$conn->close()) {
     </div>
 
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/store/order.js"></script>
+<script src="/f1-webapp/assets/js/store/order.js"></script>
 </body>
 </html>

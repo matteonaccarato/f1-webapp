@@ -12,7 +12,7 @@ require_once("utility/store.php");
 
 if (isset($_GET["search"]) && $_GET["search"]!=""){
     $search = $_GET["search"];
-    $conn = DB::connect("\\views\public\search.php", "/f1_project/views/public/index.php");
+    $conn = DB::connect("\\views\public\search.php", "/f1-webapp/views/public/index.php");
     [$num_products, $products] = DB::stmt_get_record_by_field(
         $conn,
         " SELECT Products.id AS 'Products.id', Products.title AS 'Products.title', Products.color AS 'Products.color', Products.size AS 'Products.size', Products.description AS 'Products.description', Products.price AS 'Products.price', Products.img_url AS 'Products.img_url' 
@@ -20,13 +20,13 @@ if (isset($_GET["search"]) && $_GET["search"]!=""){
                 WHERE Products.title LIKE '%$search%' or Products.description LIKE '%$search%' or Products.color LIKE '%$search%' or Products.size LIKE '%$search%' ");
 
     if (!$conn->close()) {
-        error("500", "conn_close()", "store.php", "/f1_project/views/public/index.php");
+        error("500", "conn_close()", "store.php", "/f1-webapp/views/public/index.php");
         exit;
     }
 }
 
 else{
-    header("location: /f1_project/views/public/index.php");
+    header("location: /f1-webapp/views/public/index.php");
     exit;
 }
 ?>
@@ -38,9 +38,9 @@ else{
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/store/store.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/store/store.css">
 </head>
 
 <body class="bg-dark">
@@ -61,7 +61,7 @@ else{
     </main>
 
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/navbar.js"></script>
-<script src="/f1_project/assets/js/store/store.js"></script>
+<script src="/f1-webapp/assets/js/navbar.js"></script>
+<script src="/f1-webapp/assets/js/store/store.js"></script>
 </body>
 </html>

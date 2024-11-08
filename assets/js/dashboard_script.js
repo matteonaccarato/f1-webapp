@@ -21,7 +21,7 @@
      });
  });
 
-let id = ['goProfile', 'goOrders', 'goTable', 'GoStoreMan'];
+let id = ['goProfile', 'goOrders', 'goTable', 'goStore'];
 for (let i=0; i<id.length; ++i){
     goToPage(id[i]);
 }
@@ -29,10 +29,10 @@ for (let i=0; i<id.length; ++i){
 function goToPage(id){
     $(`#${id}`).on("click", () => {
         switch (id){
-            case('goProfile') : window.location.href = "../../show_profile.php"; break;
-            case('goOrders') : window.location.href = "/f1_project/views/private/orders/all.php"; break
-            case('goTable') : window.location.href = "/f1_project/views/private/users/all.php"; break;
-            case('GoStoreMan') : window.location.href = "/f1_project/views/private/store/all.php"; break;
+            case('goProfile') : window.location.href = "../../views/private/users/show_profile.php"; break;
+            case('goOrders') : window.location.href = "/f1-webapp/views/private/orders/all.php"; break
+            case('goTable') : window.location.href = "/f1-webapp/views/private/users/all.php"; break;
+            case('goStore') : window.location.href = "/f1-webapp/views/private/store/all.php"; break;
         }
     })
 }

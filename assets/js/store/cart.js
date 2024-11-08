@@ -108,7 +108,7 @@ const render_cart = (cart = curr_cart) => {
 
 const html_img = (id, img_url) => {
     return `<div class="col-12 col-md-4 col-lg-3 text-center text-md-end">
-                <a href="/f1_project/views/public/store/product.php?id=${id}" target="_blank" class="text-decoration-none">
+                <a href="/f1-webapp/views/public/store/product.php?id=${id}" target="_blank" class="text-decoration-none">
                     <img height="200px" class="product-img" src="${img_url}" alt="">
                 </a>
             </div>`
@@ -116,7 +116,7 @@ const html_img = (id, img_url) => {
 
 const html_description = (id, title, team, price, size, quantity) => {
     return `<div class="col-12 col-md-4 text-center text-md-start">
-                <a href="/f1_project/views/public/store/product.php?id=${id}" target="_blank" class="link-product w-100 text-decoration-none text-light d-flex flex-column justify-content-between align-items-start">
+                <a href="/f1-webapp/views/public/store/product.php?id=${id}" target="_blank" class="link-product w-100 text-decoration-none text-light d-flex flex-column justify-content-between align-items-start">
                     <span class="mx-auto mx-md-0 w-100">
                         ${title}
                         <hr class="rounded my-thin-grey">

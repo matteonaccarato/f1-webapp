@@ -5,7 +5,7 @@ require_once ("../../DB/DB.php");
 if (isset($_GET["email"])) {
     $email = $_GET["email"];
 
-    $conn = DB::connect("\controllers\auth\check_email_client.php", "/f1_project/views/public/auth/registration.php");
+    $conn = DB::connect("\controllers\auth\check_email_client.php", "/f1-webapp/views/public/auth/registration.php");
 
     $res = DB::get_record_by_field($conn,
         "SELECT email FROM users WHERE email = ?",

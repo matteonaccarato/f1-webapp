@@ -9,12 +9,12 @@ require_once("utility/utility_func.php");
 require_once ("utility/aws.php");
 
 const SOURCE = "\controllers\users\delete.php";
-const REDIRECT = "/f1_project/views/private/users/all.php";
+const REDIRECT = "/f1-webapp/views/private/users/all.php";
 
 [$login_allowed, $user] = check_cookie();
 if (!check_admin_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/users/delete.php?id={${${$_GET['id']??''}}}";
-    error("401", "not_authorized", SOURCE, "/f1_project/views/public/auth/login.php", "Unauthorized access.");
+    $_SESSION['redirection'] = "/f1-webapp/users/delete.php?id={${${$_GET['id']??''}}}";
+    error("401", "not_authorized", SOURCE, "/f1-webapp/views/public/auth/login.php", "Unauthorized access.");
     exit;
 }
 set_session($user);

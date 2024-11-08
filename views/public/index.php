@@ -37,8 +37,8 @@ $json_cards_data = json_decode($json, true);
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
 </head>
 
 <body class="bg-dark">
@@ -59,15 +59,14 @@ $json_cards_data = json_decode($json, true);
                 <button type="button" data-bs-target="#Indicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/f1_project/assets/images/230145-scuderia-ferrari-hungarian-gp-saturday_9ed40d92-6287-40c9-a6f2-97dc014e3588.jpg" class="d-block w-100 img-carousel rounded" alt="Red Ferrari F1 Car at sunset">
-                </div>
-                <div class="carousel-item">
-                    <img src="/f1_project/assets/images/wp12074925-mercedes-formula-1-4k-wallpapers.jpg" class="d-block w-100 img-carousel rounded" alt="Black F1 Mercedes car">
-                </div>
-                <div class="carousel-item">
-                    <img src="/f1_project/assets/images/230064-scuderia-ferrari-usa-gp-2023-saturday_2ab8cee5-bc2b-4dd7-83b7-671526bc4eed.jpg" class="d-block w-100 img-carousel rounded" alt="View from the behind the starting grid of the USA Grand Prix. A lot of mechanics are carrying materials to their grid position.">
-                </div>
+                <?php
+                foreach (["stroll-canada-2.jpg", "alonso-canada.jpg", "austin.jpg"] as $index => $pic) { ?>
+                    <div class="carousel-item <?php echo $index == 0 ? "active" : "" ?>">
+                        <img src="<?php echo "/f1-webapp/assets/images/" . $pic ?>" class="d-block w-100 img-carousel rounded" alt="F1 car and track">
+                    </div>
+                <?php } ?>
+
+
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#Indicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -91,7 +90,7 @@ $json_cards_data = json_decode($json, true);
                         News
                         <span class="material-symbols-outlined text-danger">download</span>
                     </span>
-                    (provided by <a href="https://www.formula1.com/en/latest/all" target="_blank" class="text-info text-decoration-none">formula1.com</a>)
+                    (provided by <a href="<?php echo BASE_URL; ?>" target="_blank" class="text-info text-decoration-none">formula1.com</a>)
                 </span>
                 <?php echo_news_cards($title_list, $img_list, $link_list, MAX_NEWS_INDEX, COL_CARD); ?>
             </div>
@@ -135,10 +134,10 @@ $json_cards_data = json_decode($json, true);
                     <h2>Who we are</h2>
                     <hr>
                     <div>
-                        F1 SAW was born from two passionates about Formula 1.<br>
+                        F1 INFO was born from two passionates about Formula 1.<br>
                         We designed our website to perform different actions with it.<br>
-                        You can <a href="/f1_project/views/public/store/store.php" target="_blank" class="h5">BUY</a> official products, keep yourself updated with the most recent <a href="/f1_project/views/public/news.php" target="_blank" class="h5">NEWS</a>
-                        and, also, navigate in different <a href="/f1_project/views/public/statistics.php" target="_blank" class="h5">STATISTICS</a>, such as Drivers, Teams, Calendar <?php echo date("Y"); ?> and GP results (from 1950 to <?php echo date("Y"); ?>).
+                        You can (virtually) <a href="/f1-webapp/views/public/store/store.php" target="_blank" class="h5">BUY</a> products, keep yourself updated with the most recent <a href="/f1-webapp/views/public/news.php" target="_blank" class="h5">NEWS</a>
+                        and, also, navigate in various <a href="/f1-webapp/views/public/statistics.php" target="_blank" class="h5">STATISTICS</a> (from 1950 to <?php echo date("Y"); ?>).
                     </div>
                 </div>
 

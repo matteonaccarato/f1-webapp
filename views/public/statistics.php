@@ -25,8 +25,8 @@ else
     <title>Statistics</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/info_cards.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/info_cards.css">
     <?php include("views/partials/head.php"); ?>
 </head>
 
@@ -57,7 +57,7 @@ else
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Select Year</a>
                         <ul style="max-height: 280px; overflow-y: auto" class="dropdown-menu">
                             <?php for($k = date("Y"); $k > 1949; --$k){ ?>
-                            <li><a class="dropdown-item" href="/f1_project/views/public/statistics.php?year=<?php echo $k; ?>"><?php echo $k; ?></a></li>
+                            <li><a class="dropdown-item" href="/f1-webapp/views/public/statistics.php?year=<?php echo $k; ?>"><?php echo $k; ?></a></li>
                             <li><hr class="dropdown-divider"></li>
                             <?php } ?>
                         </ul>
@@ -87,7 +87,7 @@ else
 
 <?php include ("views/partials/footer.php"); ?>
 
-<script src="/f1_project/assets/js/navigate.js"></script>
+<script src="/f1-webapp/assets/js/navigate.js"></script>
 </body>
 </html>
 

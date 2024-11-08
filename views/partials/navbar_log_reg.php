@@ -1,6 +1,6 @@
 <nav id="navbar" class="w-100 navbar">
     <div class="container-fluid px-4">
-        <a id="navbar-logo" class="navbar-brand px-5" href="/f1_project/views/public/index.php"></a>
+        <a id="navbar-logo" class="navbar-brand px-5" href="/f1-webapp/views/public/index.php"></a>
         <div style="padding-left: 0" class="d-md-flex justify-content-end align-items-center">
             <ul class="navbar-nav mb-2 mb-lg-0 p-2 d-flex flex-row gap-5">
                 <li class="nav-item">

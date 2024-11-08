@@ -10,20 +10,20 @@ require_once("views/partials/alert.php");
 
 [$login_allowed, $user] = check_cookie();
 if (!check_admin_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/views/private/users/all.php";
-    error("401", "not_authorized", "\\views\private\users\all.php", "/f1_project/views/public/auth/login.php", "Unauthorized access.");
+    $_SESSION['redirection'] = "/f1-webapp/views/private/users/all.php";
+    error("401", "not_authorized", "\\views\private\users\all.php", "/f1-webapp/views/public/auth/login.php", "Unauthorized access.");
     exit;
 }
 set_session($user);
 
-$conn = DB::connect("\\views\private\users\all.php", "/f1_project/views/private/dashboard.php");
+$conn = DB::connect("\\views\private\users\all.php", "/f1-webapp/views/private/dashboard.php");
 [$num_users, $users] = DB::stmt_get_record_by_field($conn,
     "SELECT * FROM Users;",
     "\\views\private\users\all.php",
-    "/f1_project/views/private/dashboard.php");
+    "/f1-webapp/views/private/dashboard.php");
 
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\private\users\all.php", "/f1_project/views/private/dashboard.php");
+    error("500", "conn_close()", "\\views\private\users\all.php", "/f1-webapp/views/private/dashboard.php");
     exit;
 }
 ?>
@@ -36,8 +36,8 @@ if (!$conn->close()) {
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/admin/table_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/admin/table_style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script> $(document).ready( function () { $('#table').DataTable(); }); </script>
@@ -79,7 +79,7 @@ if (!$conn->close()) {
                         foreach ($users as $user) { ?>
                             <tr>
                                 <th class='text-center'>
-                                    <a href='/f1_project/show_profile.php/?id=<?php echo htmlentities($user["id"]); ?>' class="text-decoration-none" style="color: #4a82fc">
+                                    <a href='/f1-webapp/views/private/users/show_profile.php/?id=<?php echo htmlentities($user["id"]); ?>' class="text-decoration-none" style="color: #4a82fc">
                                         <?php echo htmlentities($user["id"]); ?>
                                     </a>
                                 </th>
@@ -102,7 +102,7 @@ if (!$conn->close()) {
                                 </td>
 
                                 <td class='text-center delete-loading'>
-                                    <a href='/f1_project/controllers/users/delete.php/?id=<?php echo htmlentities($user["id"]); ?>' class='my-auto d-flex align-items-center justify-content-center text-decoration-none'>
+                                    <a href='/f1-webapp/controllers/users/delete.php/?id=<?php echo htmlentities($user["id"]); ?>' class='my-auto d-flex align-items-center justify-content-center text-decoration-none'>
                                         <span class='material-icons text-danger'>delete</span>
                                     </a>
                                 </td>
@@ -124,6 +124,6 @@ if (!$conn->close()) {
     </div>
 
     <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/loading-crud.js"></script>
+<script src="/f1-webapp/assets/js/loading-crud.js"></script>
 </body>
 </html>

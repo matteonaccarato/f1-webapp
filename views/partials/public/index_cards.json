@@ -2,43 +2,43 @@
   {
     "title": "Circuits",
     "text": "In this section you can see <strong>all</strong> the 2024 F1 circuits.",
-    "img_url": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/USA_Circuit.png",
+    "img_url": "/f1-webapp/assets/images/USA_Circuit.png",
     "link": "/views/public/circuits.php",
     "alt": "Austin Circuit"
   },
   {
     "title": "FIA Regulations Formula One World Championship",
     "text": "Have fun in reading these <strong>short</strong> docs <strong>:P</strong>",
-    "img_url": "https://i.ytimg.com/vi/jKZKCl_GEgY/maxresdefault.jpg",
+    "img_url": "/f1-webapp/assets/images/regulations.jpg",
     "link": "https://www.fia.com/regulation/category/110",
     "alt": "Mercedes AMG Petronas F1 Team Technical Draw"
   },
   {
     "title": "Drivers",
     "text": "Discover the secrets of your favorite Drivers <strong>:)</strong>",
-    "img_url": "https://www.sportinglad.com/wp-content/uploads/2023/08/ezgif.com-gif-maker.webp",
-    "link": "/f1_project/views/public/drivers.php",
+    "img_url": "/f1-webapp/assets/images/f1-2024-drivers.jpg",
+    "link": "/f1-webapp/views/public/drivers.php",
     "alt": "Group photo of all twenty drivers. Standing pose with race suits, everyone has his hands behind his body."
   },
   {
     "title": "Teams",
     "text": "Discover the <strong>Teams</strong> which will race in 2024",
-    "img_url": "https://f1ntastic.com/wp-content/uploads/2022/03/2022-F1-Teams-Cover.jpg",
-    "link": "/f1_project/views/public/teams.php",
+    "img_url": "/f1-webapp/assets/images/f1-2024-teams.jpg",
+    "link": "/f1-webapp/views/public/teams.php",
     "alt": "Collage of all ten team cars. From top-left to bottom-right: Ferrari, Mercedes, McLaren, Red Bull, AlphaTauri, Alpine, Hass, Aston Martin, Alfa Romeo and Williams"
   },
   {
     "title": "Statistics",
     "text": "<strong>Data</strong> lover? This section is for you!",
-    "img_url": "https://hoteldelaville.com/wp-content/uploads/2021/06/gran-premio-di-monza-informazioni-1000x634.jpg",
-    "link": "/f1_project/views/public/statistics.php",
+    "img_url": "/f1-webapp/assets/images/statistics-drivers.png",
+    "link": "/f1-webapp/views/public/statistics.php",
     "alt": "Red Formula 1 show car."
   },
   {
     "title": "Store",
     "text": "Buy <strong>official</strong> merchandise",
-    "img_url": "https://cdn-5.motorsport.com/images/amp/0qXjNlQ6/s6/charles-leclerc-ferrari-carlos.jpg",
-    "link": "/f1_project/views/public/store/store.php",
+    "img_url": "/f1-webapp/assets/images/charles-leclerc-ferrari-carlos.jpg",
+    "link": "/f1-webapp/views/public/store/store.php",
     "alt": "Charles and Carlos looking curious towards the camera."
   }
 ]

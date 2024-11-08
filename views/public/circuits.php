@@ -20,15 +20,15 @@ $circuits = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "\controll
     <title>Calendar 2024</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/info_cards.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/info_cards.css">
 
     <?php include("views/partials/head.php"); ?>
 
     <script>
         const API_KEY = "<?php echo $ini["API_KEY"]; ?>";
     </script>
-    <script src="/f1_project/assets/js/calendar.js"></script>
+    <script src="/f1-webapp/assets/js/calendar.js"></script>
 </head>
 
 <body class="bg-dark">
@@ -116,6 +116,6 @@ $circuits = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "\controll
     </main>
 </div>
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/navigate.js"></script>
+<script src="/f1-webapp/assets/js/navigate.js"></script>
 </body>
 </html>

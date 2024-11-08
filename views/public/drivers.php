@@ -35,13 +35,13 @@ else
     <title>Drivers</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/info_cards.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/info_cards.css">
     <?php include("views/partials/head.php"); ?>
 </head>
 
 <body class="bg-dark">
-<script src="/f1_project/assets/js/info_drivers.js"></script>
+<script src="/f1-webapp/assets/js/info_drivers.js"></script>
 <div class="container-fluid">
 
     <!-- Nav -->
@@ -85,7 +85,7 @@ else
 
 <?php include ("views/partials/footer.php"); ?>
 
-<script src="/f1_project/assets/js/navigate.js"></script>
+<script src="/f1-webapp/assets/js/navigate.js"></script>
 </body>
 </html>
 

@@ -10,11 +10,11 @@ require_once ("DB/DB.php");
 require_once("views/partials/alert.php");
 
 if(!isset($_GET["id"]) || !$_GET["id"]) {
-    error("500", "ID not given", "product.php", "/f1_project/views/public/store/store.php");
+    error("500", "ID not given", "product.php", "/f1-webapp/views/public/store/store.php");
     exit;
 }
 
-$conn = DB::connect("\\views\public\store\product.php", "/f1_project/views/public/store/store.php");
+$conn = DB::connect("\\views\public\store\product.php", "/f1-webapp/views/public/store/store.php");
 $product = DB::get_record_by_field($conn,
     "SELECT Products.id AS 'Products.id', Products.title AS 'Products.title', Products.color AS 'Products.color', Products.size AS 'Products.size', Products.description AS 'Products.description', Products.price AS 'Products.price', Products.img_url AS 'Products.img_url', Products.alt AS 'Products.alt',
                     Teams.id AS 'Teams.id', Teams.name AS 'Teams.name', Teams.color_rgb_value AS 'Teams.color_rgb_value' 
@@ -22,15 +22,15 @@ $product = DB::get_record_by_field($conn,
     ["i"],
     [$_GET["id"]],
     "\\views\public\store\product.php",
-    "/f1_project/views/public/store/store.php")[0];
+    "/f1-webapp/views/public/store/store.php")[0];
 
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\public\store\product.php", "/f1_project/views/public/store/store.php");
+    error("500", "conn_close()", "\\views\public\store\product.php", "/f1-webapp/views/public/store/store.php");
     exit;
 }
 
 if (!$product) {
-    error("500", "Product NOT found.", "\\views\public\store\product.php", "/f1_project/views/public/store/store.php");
+    error("500", "Product NOT found.", "\\views\public\store\product.php", "/f1-webapp/views/public/store/store.php");
     exit;
 }
 ?>
@@ -41,10 +41,10 @@ if (!$product) {
     <title><?php echo htmlentities($product["Products.title"]); ?></title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/store/store.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/store/product.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/store/store.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/store/product.css">
 
     <?php include("views/partials/head.php"); ?>
 </head>
@@ -173,6 +173,6 @@ if (!$product) {
         </div>
     </main>
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/navbar.js"></script>
+<script src="/f1-webapp/assets/js/navbar.js"></script>
 </body>
 </html>

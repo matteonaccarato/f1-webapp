@@ -71,7 +71,7 @@ main {
 }
 
 #bg-login {
-    background: url("/f1_project/assets/images/FEpfHeBXwAMnIJA.jpeg");
+    background: url("/f1-webapp/assets/images/am-celebration.jpg");
     background-size: cover;
     overflow: hidden;
     background-position: bottom;
@@ -82,7 +82,7 @@ main {
 }
 
 #bg-register {
-    background: url("/f1_project/assets/images/FVCyg1fWIAIy8y7.jpeg");
+    background: url("/f1-webapp/assets/images/jamie.jpg");
     background-size: cover;
     background-position: top;
     overflow: hidden;

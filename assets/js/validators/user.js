@@ -170,7 +170,7 @@ function check_email() {
         // 1st condition => it means that the loaded page is the registration one (there is no "original-email" input), so the email check is required
         // Otherwise, checking if the new email provided is the same as the previous one is needed
         if (!original_email || original_email.value.trim() !== email) {
-            fetch(`http://localhost:63342/f1_project/controllers/auth/check_email_client.php?email=${encodeURIComponent(email)}`)
+            fetch(`http://localhost:63342/f1-webapp/controllers/auth/check_email_client.php?email=${encodeURIComponent(email)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.exists) {

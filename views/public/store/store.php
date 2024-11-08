@@ -11,11 +11,11 @@ require_once ("DB/DB.php");
 
 
 /* GET TEAMS */
-$conn = DB::connect("\\views\public\store\store.php", "/f1_project/views/public/index.php");
+$conn = DB::connect("\\views\public\store\store.php", "/f1-webapp/views/public/index.php");
 [$num_teams, $teams] = DB::stmt_get_record_by_field($conn,
     "SELECT * FROM Teams;",
     "\\views\public\store\store.php",
-    "/f1_project/views/public/index.php");
+    "/f1-webapp/views/public/index.php");
 
 /* GET Products (eventually filtered by team) */
 $team_filter = (isset($_GET["team"]) && $_GET["team"])? ("WHERE team_id = " . $_GET["team"]):"";
@@ -27,9 +27,9 @@ $team_filter = (isset($_GET["team"]) && $_GET["team"])? ("WHERE team_id = " . $_
             $team_filter 
             ORDER BY Products.id DESC;",
     "\\views\public\store\store.php",
-    "/f1_project/views/public/index.php");
+    "/f1-webapp/views/public/index.php");
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\public\store\store.php", "/f1_project/views/public/index.php");
+    error("500", "conn_close()", "\\views\public\store\store.php", "/f1-webapp/views/public/index.php");
     exit;
 }
 ?>
@@ -42,9 +42,9 @@ if (!$conn->close()) {
 
     <?php include("views/partials/head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/store/store.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/store/store.css">
 </head>
 
 <body class="bg-dark">
@@ -89,7 +89,7 @@ if (!$conn->close()) {
     </main>
 </div>
 <?php include ("views/partials/footer.php"); ?>
-<script src="/f1_project/assets/js/navbar.js"></script>
-<script src="/f1_project/assets/js/store/store.js"></script>
+<script src="/f1-webapp/assets/js/navbar.js"></script>
+<script src="/f1-webapp/assets/js/store/store.js"></script>
 </body>
 </html>

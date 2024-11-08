@@ -59,7 +59,7 @@ body {
 
 
 #bg-profile {
-    background: url("/f1_project/assets/images/circuit.jpeg");
+    background: url("/f1-webapp/assets/images/circuit-jeddah.jpg");
     background-size: cover;
     background-position: bottom;
     border-radius: 10px;
@@ -138,7 +138,7 @@ hr {
 #navbar-logo {
     width: 70px;
     height: 70px;
-    background-image: url('/f1_project/assets/images/F1.png');
+    background-image: url('/f1-webapp/assets/images/F1.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

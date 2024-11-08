@@ -10,7 +10,7 @@ require_once("utility/utility_func.php");
 
 [$login_allowed, $user] = check_cookie();
 if ($login_allowed || check_user_auth($user)) {
-    error("-1", "Already registered.", "\auth\\registration_email.php", "/f1_project/views/private/dashboard.php");
+    error("-1", "Already registered.", "\auth\\registration_email.php", "/f1-webapp/views/private/dashboard.php");
     exit;
 }
 
@@ -39,7 +39,7 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
         || $password == ""
         || $confirm == ""
         /*|| $date_of_birth == "" || $date_of_birth == " "*/) {
-        error("-1", "Empty input fields.", "\auth\\registration_email.php", "/f1_project/views/public/auth/registration.php");
+        error("-1", "Empty input fields.", "\auth\\registration_email.php", "/f1-webapp/views/public/auth/registration.php");
         exit;
     }
 
@@ -47,20 +47,20 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
     // REGEX EMAIL
     /* https://en.wikipedia.org/wiki/Email_address */
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        error("-1", "EMAIL pattern NOT valid.", "\auth\\registration_email.php", "/f1_project/views/public/auth/registration.php");
+        error("-1", "EMAIL pattern NOT valid.", "\auth\\registration_email.php", "/f1-webapp/views/public/auth/registration.php");
         exit;
     }
 
 
     // REGEX DATE OF BIRTH dd/mm/yyyy
     if ($date_of_birth && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date_of_birth)) {
-        error("-1", "Date of birth pattern NOT valid.", "\auth\\registration_email.php", "/f1_project/views/public/auth/registration.php");
+        error("-1", "Date of birth pattern NOT valid.", "\auth\\registration_email.php", "/f1-webapp/views/public/auth/registration.php");
         exit;
     }
 
     /* -- ERROR | passwords (mis)matching -- */
     if ($password != $confirm) {
-        error("-1", "Mismatched passwords.", "\auth\\registration_email.php", "/f1_project/views/public/auth/registration.php");
+        error("-1", "Mismatched passwords.", "\auth\\registration_email.php", "/f1-webapp/views/public/auth/registration.php");
         exit;
     }
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
@@ -76,7 +76,7 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
                         <meta charset='UTF-8'>
                     </head>
                     <body>
-                    <p>Hi $first_name! We have just received your request to register on our site. Please confirm your email to complete registration: <a href='http://localhost:63342/f1_project/controllers/auth/confirm_email.php'>confirm email</p>
+                    <p>Hi $first_name! We have just received your request to register on our site. Please confirm your email to complete registration: <a href='http://localhost:63342/f1-webapp/controllers/auth/confirm_email.php'>confirm email</p>
                     </body>
                     ";
         send_mail([$email], $subject, $body);
@@ -92,14 +92,14 @@ if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["ema
         $_SESSION["tmp_hpass"] = $hash_password;
         $_SESSION["tmp_news"] = $newsletter;
 
-        header("location: /f1_project/views/public/auth/registration.php");
+        header("location: /f1-webapp/views/public/auth/registration.php");
 
     } catch (Exception $e) {
-        error("500", "PHPMailer exception: $e", "\auth\\registration_email.php", "/f1_project/views/public/auth/registration.php");
+        error("500", "PHPMailer exception: $e", "\auth\\registration_email.php", "/f1-webapp/views/public/auth/registration.php");
         exit;
     }
 
 } else {
-    error("-1", "Input fields NOT provided.", "\auth\\registration_email.php", "/f1_project/views/public/auth/registration.php");
+    error("-1", "Input fields NOT provided.", "\auth\\registration_email.php", "/f1-webapp/views/public/auth/registration.php");
     exit;
 }

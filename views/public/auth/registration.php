@@ -12,11 +12,11 @@ require_once("views/partials/alert.php");
 if (check_user_auth($user)) {
     set_session($user);
     if (check_admin_auth($user)) {
-        header("Location: /f1_project/views/private/users/all.php");
+        header("Location: /f1-webapp/views/private/users/all.php");
     } else {
         $_SESSION["err"] = 1;
         $_SESSION["err_msg"] = "Not allowed operation.";
-        header("Location: /f1_project/views/public/index.php");
+        header("Location: /f1-webapp/views/public/index.php");
     }
     exit;
 }
@@ -29,11 +29,11 @@ if (check_user_auth($user)) {
     <title>Sign Up</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/log_reg_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/log_reg_style.css">
 
     <?php if (isset($_SESSION["confirm_email"]) && !$_SESSION["confirm_email"]){ ?>
-        <link rel="stylesheet" href="/f1_project/assets/css/text_confirm_email.css">
+        <link rel="stylesheet" href="/f1-webapp/assets/css/text_confirm_email.css">
     <?php } ?>
 
     <?php include("views/partials/head.php"); ?>
@@ -58,11 +58,11 @@ if (check_user_auth($user)) {
         <?php }
         else if (isset($_SESSION["confirm_email"]) && $_SESSION["confirm_email"]){
             unset($_SESSION["confirm_email"]);
-            header("location: /f1_project/views/public/auth/login.php");
+            header("location: /f1-webapp/views/public/auth/login.php");
             exit;
         }
         else{ ?>
-            <form id="register-form" action="/f1_project/registration.php" method="POST" class="container-fluid container-element registration col-sm-6">
+            <form id="register-form" action="/f1-webapp/controllers/auth/registration.php" method="POST" class="container-fluid container-element registration col-sm-6">
 
                 <div style="margin-left: 10px; margin-right: 10px">
                     <?php err_msg_alert(); ?>
@@ -160,11 +160,11 @@ if (check_user_auth($user)) {
 
                     <hr>
                     <div id="div_button" class="row col-12 d-flex justify-content-center align-items-center mx-1 gap-3">
-                        <button type="submit" id="btn-submit" class="btn-submit btn btn-danger col-6 col-sm-6 col-md-5 d-flex align-items-center justify-content-center">
+                        <button type="submit" id="btn-submit" class="btn-submit btn btn-danger col-6 col-sm-6 col-md-5 d-flex align-items-center justify-content-center gap-1">
                             <span class="material-symbols-outlined">person_add</span>
                             <strong>Sign up</strong>
                         </button>
-                        <a href="/f1_project/views/public/auth/login.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
+                        <a href="/f1-webapp/views/public/auth/login.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
                             <span class="material-symbols-outlined">login</span>
                             <span class="d-inline d-xxl-inline">Login</span>
                         </a>
@@ -177,7 +177,7 @@ if (check_user_auth($user)) {
     </div>
 </div>
 
-<script src="/f1_project/assets/js/validators/user.js"></script>
-<script src="/f1_project/assets/js/tooltip.js"></script>
+<script src="/f1-webapp/assets/js/validators/user.js"></script>
+<script src="/f1-webapp/assets/js/tooltip.js"></script>
 </body>
 </html>

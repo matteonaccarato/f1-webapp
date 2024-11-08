@@ -11,19 +11,19 @@ require_once("views/partials/alert.php");
 
 [$login_allowed, $user] = check_cookie();
 if (!check_admin_auth($user)) {
-    $_SESSION['redirection'] = "/f1_project/views/private/store/update_profile.php?id={${${$_GET['id']??''}}}";
-    error("401", "not_authorized", "\\views\private\store\\update_profile.php", "/f1_project/views/public/auth/login.php", "Unauthorised access.");
+    $_SESSION['redirection'] = "/f1-webapp/views/private/store/update.php?id={${${$_GET['id']??''}}}";
+    error("401", "not_authorized", "\\views\private\store\\update.php", "/f1-webapp/views/public/auth/login.php", "Unauthorised access.");
     exit;
 }
 set_session($user);
 
 if (!isset($_GET["id"]) || !$_GET["id"]) {
-    error("500", "product_id_not_specified", "\\views\private\store\\update_profile.php", "/f1_project/views/private/store/all.php", "PRODUCT ID NOT specified.");
+    error("500", "product_id_not_specified", "\\views\private\store\\update.php", "/f1-webapp/views/private/store/all.php", "PRODUCT ID NOT specified.");
     exit;
 }
 
 /* Product look up in DB */
-$conn = DB::connect("\\views\private\store\\update_profile.php", "/f1_project/views/private/store/all.php");
+$conn = DB::connect("\\views\private\store\\update.php", "/f1-webapp/views/private/store/all.php");
 $id = intval($_GET["id"])?? -1;
 $product = DB::get_record_by_field($conn,
     "SELECT Products.id AS 'Products.id', Products.title AS 'Products.title', Products.description AS 'Products.description', Products.price AS 'Products.price', Products.size AS 'Products.size', Products.color AS 'Products.color', Products.img_url AS 'Products.img_url', Products.alt AS 'Products.alt',
@@ -31,21 +31,21 @@ $product = DB::get_record_by_field($conn,
             FROM Products JOIN Teams ON Products.team_id = Teams.id WHERE Products.id = ?;",
     ["i"],
     [$id],
-    "\\views\private\store\\update_profile.php",
-    "/f1_project/views/private/store/all.php")[0];
+    "\\views\private\store\\update.php",
+    "/f1-webapp/views/private/store/all.php")[0];
 
 [$num_teams, $teams] = DB::stmt_get_record_by_field($conn,
     "SELECT * FROM Teams;",
-    "\\views\private\store\\update_profile.php",
-    "/f1_project/views/private/store/all.php");
+    "\\views\private\store\\update.php",
+    "/f1-webapp/views/private/store/all.php");
 
 if (!$conn->close()) {
-    error("500", "conn_close()", "\\views\private\store\\update_profile.php", "/f1_project/views/private/store/all.php");
+    error("500", "conn_close()", "\\views\private\store\\update.php", "/f1-webapp/views/private/store/all.php");
     exit;
 }
 
 if (!$product) {
-    error("500", "Product NOT found", "\\views\private\store\\update_profile.php", "/f1_project/views/private/store/all.php");
+    error("500", "Product NOT found", "\\views\private\store\\update.php", "/f1-webapp/views/private/store/all.php");
     exit;
 }
 ?>
@@ -59,9 +59,9 @@ if (!$product) {
     <?php include("views/partials/head.php"); ?>
     <?php include ("views/partials/toggle_head.php"); ?>
 
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/index_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/admin/product_new.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/index_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/admin/product_new.css">
 </head>
 
 <body class="vh-100 bg-dark">
@@ -71,7 +71,7 @@ if (!$product) {
         <div class="container-fluid row d-flex flex-row justify-content-center align-items-center gap-3 mt-5">
             <div class="col-12 col-md-10">
 
-                <form action="/f1_project/controllers/store/edit.php" enctype="multipart/form-data" id="form-loading" method="POST" class="container col-12 col-xl-6 py-3 border border-3 border-danger rounded">
+                <form action="/f1-webapp/controllers/store/edit.php" enctype="multipart/form-data" id="form-loading" method="POST" class="container col-12 col-xl-6 py-3 border border-3 border-danger rounded">
 
                     <?php err_msg_alert(); ?>
                     <label for="id"></label>
@@ -259,7 +259,7 @@ if (!$product) {
                                 <span class="material-symbols-outlined">add</span>
                                 <strong>Update</strong>
                             </button>
-                            <a href="/f1_project/views/private/store/all.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
+                            <a href="/f1-webapp/views/private/store/all.php" class="my_outline_animation col-12 col-sm-3 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
                                 <span class="material-symbols-outlined">fast_rewind</span>
                                 <span class="d-inline d-sm-none d-xxl-inline">Back</span>
                             </a>
@@ -284,11 +284,11 @@ if (!$product) {
     </div>
 
     <?php include ("views/partials/footer.php"); ?>
-    <script src="/f1_project/assets/js/validators/products.js"></script>
+    <script src="/f1-webapp/assets/js/validators/products.js"></script>
     <script src="https://benalman.com/code/projects/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
-    <script src="/f1_project/assets/js/store/crud.js"></script>
-    <script src="/f1_project/assets/js/loading-crud.js"></script>
-    <script src="/f1_project/assets/js/image_upload.js"></script>
-    <script src="/f1_project/assets/js/tooltip.js"></script>
+    <script src="/f1-webapp/assets/js/store/crud.js"></script>
+    <script src="/f1-webapp/assets/js/loading-crud.js"></script>
+    <script src="/f1-webapp/assets/js/image_upload.js"></script>
+    <script src="/f1-webapp/assets/js/tooltip.js"></script>
 </body>
 </html>

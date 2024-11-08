@@ -11,7 +11,7 @@ require_once("controllers/auth/auth.php");
 if (!$login_allowed && !check_user_auth($user)) {
     if (isset($_SESSION["tmp_firstname"]) && isset($_SESSION["tmp_lastname"]) && isset($_SESSION["tmp_email"]) && isset($_SESSION["tmp_pass"]) && isset($_SESSION["tmp_cpass"]) && isset($_SESSION["tmp_hpass"])) {
 
-        $conn = DB::connect("\auth\confirm_email.php", "/f1_project/views/public/registration.php");
+        $conn = DB::connect("\auth\confirm_email.php", "/f1-webapp/views/public/registration.php");
 
         $hash_password = $_SESSION["tmp_hpass"];
 
@@ -37,23 +37,23 @@ if (!$login_allowed && !check_user_auth($user)) {
             ["s", "s", "s", "s", "s", "i"],
             [$first_name, $last_name, $email, $hash_password, $date_of_birth??null, $newsletter??null],
             "\auth\confirm_email.php",
-            "/f1_project/views/public/registration.php");
+            "/f1-webapp/views/public/registration.php");
 
         if (!$conn->close()) {
-            error("500", "conn_close()", "\auth\confirm_email.php", "/f1_project/views/public/registration.php");
+            error("500", "conn_close()", "\auth\confirm_email.php", "/f1-webapp/views/public/registration.php");
             exit;
         }
 
         $_SESSION["success"] = 1;
         $_SESSION["success_msg"] = "Registration completed successfully.";
         $_SESSION["confirm_email"] = true;
-        header("Location: /f1_project/views/public/confirm.html");
+        header("Location: /f1-webapp/views/public/confirm.html");
     } else {
         session_destroy();
-        error("-1", "Input fields NOT provided.", "\auth\confirm_email.php", "/f1_project/views/public/registration.php");
+        error("-1", "Input fields NOT provided.", "\auth\confirm_email.php", "/f1-webapp/views/public/registration.php");
         exit;
     }
 } else {
-    header("Location: /f1_project/views/public/index.php");
+    header("Location: /f1-webapp/views/public/index.php");
     exit;
 }

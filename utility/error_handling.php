@@ -1,11 +1,11 @@
 <?php
 if (!defined("BASE_INCLUDE_PATH")) {
-    // define("BASE_INCLUDE_PATH", "/chroot/home/S5330843/public_html/f1_project/"); // on SERVER
+    // define("BASE_INCLUDE_PATH", "/chroot/home/S5330843/public_html/f1-webapp/"); // on SERVER
     define("BASE_INCLUDE_PATH", $_SERVER["DOCUMENT_ROOT"]); // on LOCAL
 }
 if(session_status() == PHP_SESSION_NONE) session_start();
 
-$_DEFAULT_ERROR_REDIRECT = "/f1_project/views/public/index.php";
+$_DEFAULT_ERROR_REDIRECT = "/f1-webapp/views/public/index.php";
 
 /**
  * Custom function to handle errors generated executing PHP scripts

@@ -12,7 +12,7 @@ include("views/partials/alert.php");
 [$login_allowed, $user] = check_cookie();
 if (check_user_auth($user)) {
     set_session($user);
-    header("Location: /f1_project/views/private/dashboard.php");
+    header("Location: /f1-webapp/views/private/dashboard.php");
     exit;
 }
 ?>
@@ -24,8 +24,8 @@ if (check_user_auth($user)) {
     <title>Lost password</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/f1_project/assets/css/log_reg_style.css">
-    <link rel="stylesheet" href="/f1_project/assets/css/style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/log_reg_style.css">
+    <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">
 
     <?php include("views/partials/head.php"); ?>
 </head>
@@ -36,7 +36,7 @@ if (check_user_auth($user)) {
         <?php include ("views/partials/navbar_log_reg.php"); ?>
 
         <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-            <form id="login-form" action="/f1_project/controllers/auth/lost_password.php" class="container-element lost-pass log p-2" method="POST">
+            <form id="login-form" action="/f1-webapp/controllers/auth/lost_password.php" class="container-element lost-pass log p-2" method="POST">
 
                 <div style="margin-left: 10px; margin-right: 10px">
                     <?php err_msg_alert(); ?>
@@ -75,7 +75,7 @@ if (check_user_auth($user)) {
                             <span class="material-symbols-outlined text-light">mail</span>
                             <strong>Send new password</strong>
                         </button>
-                        <a href="/f1_project/views/public/auth/login.php" class="my_outline_animation col-12 col-md-4 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
+                        <a href="/f1-webapp/views/public/auth/login.php" class="my_outline_animation col-12 col-md-4 text-center text-white text-decoration-none d-flex align-items-center justify-content-center gap-1 p-2 hover-red">
                             <span class="material-symbols-outlined text-light">login</span>
                             <span class="d-inline d-xxl-inline">Back to login</span>
                         </a>
@@ -84,6 +84,6 @@ if (check_user_auth($user)) {
             </form>
         </div>
     </div>
-<script src="/f1_project/assets/js/validators/user.js"></script>
+<script src="/f1-webapp/assets/js/validators/user.js"></script>
 </body>
 </html>

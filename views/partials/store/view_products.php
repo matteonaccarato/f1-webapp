@@ -6,7 +6,7 @@
         <?php foreach ($products as $product) { ?>
 
             <div class="d-none col d-flex align-items-stretch product" id="product-<?php echo htmlentities($i); ?>">
-                <a href="/f1_project/views/public/store/product.php?id=<?php echo htmlentities($product["Products.id"]); ?>" class="w-100 text-decoration-none">
+                <a href="/f1-webapp/views/public/store/product.php?id=<?php echo htmlentities($product["Products.id"]); ?>" class="w-100 text-decoration-none">
                     <div class="card bordered border-danger border-3 p-2 h-100">
                         <div class="card-img">
                             <?php if (explode("\t", $product["Products.img_url"])[0] != "") { ?>

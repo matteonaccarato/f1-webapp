@@ -18,19 +18,19 @@ if (!$login_allowed && !check_user_auth($user)) {
         /* CLEANING INPUT */
         $email = preg_replace('/\s+/', '', $_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            error("-1", "Email not an email", "controllers\auth\lost_password.php", "/f1_project/views/public/auth/lost_password.php");
+            error("-1", "Email not an email", "controllers\auth\lost_password.php", "/f1-webapp/views/public/auth/lost_password.php");
             exit;
         }
 
         /* DB */
-        $conn = DB::connect("controllers\auth\lost_password.php", "/f1_project/views/public/auth/lost_password.php");
+        $conn = DB::connect("controllers\auth\lost_password.php", "/f1-webapp/views/public/auth/lost_password.php");
 
         $user_db = DB::get_record_by_field($conn,
             "SELECT id, email FROM Users WHERE email = ?;",
             ['s'],
             [$email],
             "controllers\auth\lost_password.php",
-            "/f1_project/views/public/auth/lost_password.php")[0];
+            "/f1-webapp/views/public/auth/lost_password.php")[0];
 
         if ($user_db) {
             // EMAIL exists in DB
@@ -44,38 +44,38 @@ if (!$login_allowed && !check_user_auth($user)) {
                     ["s", "i"],
                     [$hash_pwd, $user_db["id"]],
                     "controllers\auth\lost_password.php",
-                    "/f1_project/views/public/auth/lost_password.php");
+                    "/f1-webapp/views/public/auth/lost_password.php");
 
                 if (!$conn->close()) {
-                    error("500", "conn_close()", "controllers\auth\lost_password.php", "/f1_project/views/public/auth/lost_password.php");
+                    error("500", "conn_close()", "controllers\auth\lost_password.php", "/f1-webapp/views/public/auth/lost_password.php");
                     exit;
                 }
 
                 $body = "Your new credentials:<br>";
                 $body .= "EMAIL: $email<br>";
                 $body .= "New password: $new_password";
-                send_mail([$user_db["email"]], "F1 SAW: here's your new password!", $body);
+                send_mail([$user_db["email"]], "F1 INFO: here's your new password!", $body);
 
                 $_SESSION["success"] = 1;
                 $_SESSION["success_msg"] = "New password sent successfully!";
-                header("Location: /f1_project/views/public/auth/login.php");;
+                header("Location: /f1-webapp/views/public/auth/login.php");;
                 exit;
             } catch (Exception $e) {
-                error("-1", "Exception: $e", "controllers\auth\lost_password.php", "/f1_project/views/public/auth/lost_password.php");
+                error("-1", "Exception: $e", "controllers\auth\lost_password.php", "/f1-webapp/views/public/auth/lost_password.php");
                 exit;
             }
 
         } else {
             // EMAIL DOES NOT exists in DB
-            error("-1", "Email DOES NOT exists.", "controllers\auth\lost_password.php", "/f1_project/views/public/auth/lost_password.php");
+            error("-1", "Email DOES NOT exists.", "controllers\auth\lost_password.php", "/f1-webapp/views/public/auth/lost_password.php");
             exit;
         }
 
     } else {
-        error("401", "Fields not provided.", "controllers\auth\lost_password.php", "/f1_project/views/public/auth/lost_password.php");
+        error("401", "Fields not provided.", "controllers\auth\lost_password.php", "/f1-webapp/views/public/auth/lost_password.php");
         exit;
     }
 } else {
-    header("Location: /f1_project/views/public/index.php");
+    header("Location: /f1-webapp/views/public/index.php");
     exit;
 }
