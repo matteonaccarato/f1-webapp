@@ -1,47 +1,51 @@
 <?php
 function f1_scrape_stat($base_url): array {
 
-    // Init arrays of interest
-    $info = [];
-    $date = [];
-    $car = [];
+    // Init storing arrays
+    $races = [];
+    $dates = [];
+    $winners = [];
+    $teams = [];
     $laps = [];
+    $times = [];
+    $links = [];
 
     $page = file_get_contents($base_url);
     $html = new DOMDocument();
     @$html->loadHtml($page);
     $xpath = new DOMXPath($html);
 
-    // Get Race Information
-    $node_list = $xpath->query('//td[@class="dark bold"]');
+    # [GP-NAME, DATE, WINNER, TEAM, LAPS, TIME]
+    $idx = 0;
+    $node_list = $xpath->query('//p[@class="f1-text font-titillium tracking-normal font-normal non-italic normal-case leading-none f1-text__micro text-fs-15px"]');
     foreach ($node_list as $n) {
         $node = $n->nodeValue;
-
-        // [GP_Name, Driver_Name]
-        // e.g. Bahrain ; Max Verstappen VER
-        $info[] = $node;
+        switch ($idx) {
+            case 0: $races[] = $node; break;
+            case 1: $dates[] = $node; break;
+            case 2: $winners[] = substr_replace($node, ' ', -3, 0); break; // Max VerstappenVER -> Max Verstappen VER
+            case 3: $teams[] = $node; break;
+            case 4: $laps[] = $node; break;
+            case 5: $times[] = $node; break;
+            default: break;
+        }
+        $idx = ($idx + 1) % 6;
     }
 
-    // Get Race Date
-    $node_list = $xpath->query('//td[@class="dark hide-for-mobile"]');
+    // Get Links
+    $node_list = $xpath->query('//a[@class="underline underline-offset-normal decoration-1 decoration-greyLight hover:decoration-brand-primary"]');
     foreach ($node_list as $n) {
-        $node = $n->nodeValue;
-        $date[] = $node;
+        $link = $n->getAttribute("href");
+        $base_url = str_replace(".html", "", $base_url);
+        $base_url = str_replace("races", "", $base_url);
+
+        // https://www.formula1.com/en/results/2024/races/1229/bahrain/race-result
+        // https://www.formula1.com/en/results.html/2024/races.html . races/1229/bahrain/race-result
+        // https://www.formula1.com/en/results/2024/ . races/1229/bahrain/race-result
+
+
+        $links[] = $base_url . $link;
     }
 
-    // Get Car Name
-    $node_list = $xpath->query('//td[@class="semi-bold uppercase "]');
-    foreach ($node_list as $n) {
-        $node = $n->nodeValue;
-        $car[] = $node;
-    }
-
-    // Get Laps
-    $node_list = $xpath->query('//td[@class="bold hide-for-mobile"]');
-    foreach ($node_list as $n) {
-        $node = $n->nodeValue;
-        $laps[] = $node;
-    }
-
-    return [$info, $date, $car, $laps];
+    return [$races, $dates, $winners, $teams, $laps, $times, $links];
 }

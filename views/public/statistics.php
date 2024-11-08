@@ -6,17 +6,28 @@ if(session_status() == PHP_SESSION_NONE) session_start();
 require_once ("controllers/statistics/statistics.php");
 require_once ("views/partials/public/statistics_cards.php");
 require_once("controllers/auth/auth.php");
-
+const START_YEAR = 1949;
 const COL_CARD = "col-12 col-sm-6 col-lg-4 col-xl-3";
 
-$BASE_URL_STATISTICS = "https://www.formula1.com/en/results.html/" . date("Y") ."/races.html";
-if(isset($_GET["year"])){
-    $url = "https://www.formula1.com/en/results.html/".$_GET["year"]."/races.html";
-}
-else
-    $url = $BASE_URL_STATISTICS;
+$year = date("Y");
+if(isset($_GET["year"]))
+    $year = $_GET["year"];
 
-[$info, $date, $car, $laps] = f1_scrape_stat($url);
+$BASE_URL_STATISTICS = "https://www.formula1.com/en/results.html/" . $year ."/races.html";
+define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "\\DB\backup\\statistics" . $year . ".json");
+
+$lists = f1_scrape_stat($BASE_URL_STATISTICS);
+$loadFromDisk = 0;
+foreach ($lists as $el) {
+    if (count($el) == 0)
+        $loadFromDisk = 1;
+}
+// Load/Store from json
+if ($loadFromDisk)
+    $lists = json_decode(file_get_contents(BACKUP_FILE));
+else
+    file_put_contents(BACKUP_FILE, json_encode($lists));
+[$races, $dates, $winners, $teams, $laps, $times, $links] = $lists;
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +67,7 @@ else
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Select Year</a>
                         <ul style="max-height: 280px; overflow-y: auto" class="dropdown-menu">
-                            <?php for($k = date("Y"); $k > 1949; --$k){ ?>
+                            <?php for($k = date("Y"); $k > START_YEAR; --$k){ ?>
                             <li><a class="dropdown-item" href="/f1-webapp/views/public/statistics.php?year=<?php echo $k; ?>"><?php echo $k; ?></a></li>
                             <li><hr class="dropdown-divider"></li>
                             <?php } ?>
@@ -72,8 +83,8 @@ else
                 </span>
             </div>
         </div>
-        <?php if (count($info) > 0) {
-            echo_stat_cards($info, $date, $car, $laps, COL_CARD);
+        <?php if ($races && count($races) > 0) {
+            echo_stat_cards($races, $dates, $winners, $teams, $laps, $times, $links, COL_CARD);
         } else { ?>
             <div class="alert border-light text-dark fade show d-flex align-items-center justify-content-center mt-4 col-12" role="alert">
                 <span class="material-symbols-outlined">description</span>
