@@ -93,6 +93,13 @@ else
                 </span>
             </div>
         <?php } ?>
+        <br>
+        <div class="w-100 d-flex justify-content-center">
+            <a target="_blank" href="https://f1-data.onrender.com/" class="load-more my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-2 gap-2 mb-3">
+                <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+                <span>Load more</span>
+            </a>
+        </div>
     </main>
 </div>
 

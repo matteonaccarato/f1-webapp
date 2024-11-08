@@ -39,11 +39,6 @@ function f1_scrape_stat($base_url): array {
         $base_url = str_replace(".html", "", $base_url);
         $base_url = str_replace("races", "", $base_url);
 
-        // https://www.formula1.com/en/results/2024/races/1229/bahrain/race-result
-        // https://www.formula1.com/en/results.html/2024/races.html . races/1229/bahrain/race-result
-        // https://www.formula1.com/en/results/2024/ . races/1229/bahrain/race-result
-
-
         $links[] = $base_url . $link;
     }
 
