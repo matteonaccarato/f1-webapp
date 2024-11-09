@@ -13,22 +13,8 @@
             </form>
 
             <div class="navbar-nav d-flex flex-column align-items-end gap-4 flex-lg-row justify-content-lg-end gap-lg-5">
-                <div class="d-flex flex-column align-items-end gap-4 flex-lg-row gap-lg-4 mt-4 mt-lg-0">
-                    <div class="nav-item d-flex align-items-end">
-                        <a href="/f1-webapp/views/public/news.php" class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-2 gap-2">
-                            <span class="material-symbols-outlined">news</span>
-                            <span>News</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="d-flex flex-column align-items-end gap-4 flex-lg-row gap-lg-4 mt-4 mt-lg-0">
-                    <div class="nav-item d-flex align-items-end">
-                        <a href="/f1-webapp/views/public/store/store.php" class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-2 gap-2">
-                            <span class="material-symbols-outlined">shopping_bag</span>
-                            <span>Store</span>
-                        </a>
-                    </div>
-                </div>
+
+                <?php include("views/partials/public/news_store_btn.php"); ?>
 
                 <div class="d-flex gap-3">
                     <?php
@@ -49,7 +35,7 @@
                     <?php } else {
                         set_session($user);?>
                         <div class="nav-item">
-                            <a class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-2 gap-2" href="/f1-webapp/views/private/dashboard.php">
+                            <a class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-1 gap-2" href="/f1-webapp/views/private/dashboard.php">
 
                                 <?php if(isset($_SESSION["img_url"]) && $_SESSION["img_url"] != NULL){ ?>
                                     <img class="profile-img" style="object-fit: cover;" src="<?php echo htmlentities($_SESSION["img_url"]); ?>" alt="<?php echo ($_SESSION["first_name"]? htmlentities($_SESSION["first_name"]):"") . " Profile picture"; ?>">
@@ -62,14 +48,14 @@
                         </div>
                         <?php if(check_admin_auth($user)){ ?>
                             <div class="nav-item">
-                                <a class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-2 gap-2" href="/f1-webapp/views/private/newsletter/newsletter.php">
+                                <a class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-1 gap-2" href="/f1-webapp/views/private/newsletter/newsletter.php">
                                     <span class="material-symbols-outlined">mail</span>
                                     <span>Newsletter</span>
                                 </a>
                             </div>
                         <?php } ?>
                         <div class="nav-item">
-                            <a class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-2 gap-2" href="/f1-webapp/controllers/auth/logout.php">
+                            <a class="my_outline_animation text-decoration-none hover-red d-flex align-items-end pb-1 gap-2" href="/f1-webapp/controllers/auth/logout.php">
                                 <span class="material-symbols-outlined">logout</span>
                                 <span>Logout</span>
                             </a>

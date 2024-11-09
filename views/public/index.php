@@ -140,8 +140,8 @@ $json_cards_data = json_decode($json, true);
                     <div>
                         F1 INFO was born from two passionates about Formula 1.<br>
                         We designed our website to perform different actions with it.<br>
-                        You can (virtually) <a href="/f1-webapp/views/public/store/store.php" target="_blank" class="h5">BUY</a> products, keep yourself updated with the most recent <a href="/f1-webapp/views/public/news.php" target="_blank" class="h5">NEWS</a>
-                        and, also, navigate in various <a href="/f1-webapp/views/public/statistics.php" target="_blank" class="h5">STATISTICS</a> (from 1950 to <?php echo date("Y"); ?>).
+                        You can (virtually) <a href="/f1-webapp/views/public/store/store.php" class="h5">BUY</a> products, keep yourself updated with the most recent <a href="/f1-webapp/views/public/news.php" class="h5">NEWS</a>
+                        and, also, navigate in various <a href="/f1-webapp/views/public/statistics.php" class="h5">STATISTICS</a> (from 1950 to <?php echo date("Y"); ?>).
                     </div>
                 </div>
 

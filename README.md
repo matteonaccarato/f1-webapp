@@ -36,18 +36,17 @@ Install useful dependencies
 <hr>
 
 #### Home
-![Home page](./assets/images/readme/home.png)
+![Home page](./assets/images/readme/home.PNG)
 
-![Home page](./assets/images/readme/home1.png)
 <hr>
 
 #### Circuits
-![Circuits page](./assets/images/readme/circuits_page.png)
+![Circuits page](./assets/images/readme/circuits.PNG)
 <hr>
 
 #### Store
-![Store page](./assets/images/readme/store_user.png)
+![Store page](./assets/images/readme/store_user.PNG)
 <hr>
 
 #### Admin dashboard
-![Admin page](./assets/images/readme/store_admin.png)
+![Admin page](./assets/images/readme/store_admin.PNG)
