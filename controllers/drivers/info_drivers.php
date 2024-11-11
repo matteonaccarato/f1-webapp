@@ -19,9 +19,9 @@ if(isset($_GET["url"])) {
         $array_value[] = $value;
     }
 
-    if (count($array_value) != 0 && file_exists(BACKUP_FILE))
+    if (count($array_value) != 0)
         file_put_contents($backupFile, json_encode($array_value));
-    else
+    else if (file_exists($backupFile))
         $array_value = json_decode(file_get_contents($backupFile));
 
     echo json_encode($array_value);
