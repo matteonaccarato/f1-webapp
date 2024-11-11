@@ -17,7 +17,7 @@ foreach ($lists as $el) {
         $loadFromDisk = 1;
 }
 // Load/Store from json
-if ($loadFromDisk)
+if ($loadFromDisk && file_exists(BACKUP_FILE))
     $list = json_decode(file_get_contents(BACKUP_FILE));
 else
     file_put_contents(BACKUP_FILE, json_encode($lists));

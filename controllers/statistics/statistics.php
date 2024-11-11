@@ -1,4 +1,5 @@
 <?php
+const HEADING_TEXTS_COUNT = 6;
 function f1_scrape_stat($base_url): array {
 
     // Init storing arrays
@@ -16,11 +17,12 @@ function f1_scrape_stat($base_url): array {
     $xpath = new DOMXPath($html);
 
     # [GP-NAME, DATE, WINNER, TEAM, LAPS, TIME]
-    $idx = 0;
-    $node_list = $xpath->query('//p[@class="f1-text font-titillium tracking-normal font-normal non-italic normal-case leading-none f1-text__micro text-fs-15px"]');
-    foreach ($node_list as $n) {
-        $node = $n->nodeValue;
-        switch ($idx) {
+    $selector = 0;
+    $node_list = $xpath->query('//p[contains(@class, "f1-text")]');
+    $i = HEADING_TEXTS_COUNT; # Skip heading texts
+    while ($i < count($node_list)) {
+        $node = $node_list->item($i)->nodeValue;
+        switch ($selector) {
             case 0: $races[] = $node; break;
             case 1: $dates[] = $node; break;
             case 2: $winners[] = substr_replace($node, ' ', -3, 0); break; // Fernando AlonsoALO -> Fernando Alonso ALO
@@ -29,7 +31,8 @@ function f1_scrape_stat($base_url): array {
             case 5: $times[] = $node; break;
             default: break;
         }
-        $idx = ($idx + 1) % 6;
+        $selector = ($selector + 1) % 6;
+        $i += 1;
     }
 
     // Get Links
