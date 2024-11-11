@@ -23,7 +23,7 @@ function f1_scrape_stat($base_url): array {
         switch ($idx) {
             case 0: $races[] = $node; break;
             case 1: $dates[] = $node; break;
-            case 2: $winners[] = substr_replace($node, ' ', -3, 0); break; // Max VerstappenVER -> Max Verstappen VER
+            case 2: $winners[] = substr_replace($node, ' ', -3, 0); break; // Fernando AlonsoALO -> Fernando Alonso ALO
             case 3: $teams[] = $node; break;
             case 4: $laps[] = $node; break;
             case 5: $times[] = $node; break;

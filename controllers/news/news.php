@@ -29,7 +29,7 @@ function f1_scrape_news($base_url): array {
             break;
         $link = $node_list->item($i)->getAttribute("src");
 
-        # Normalize URL
+        // Normalize URL
         $pattern = "/(https:\/\/media\.formula1\.com\/image\/upload\/)(.*?)\/fom-website/";
         $replacement = "f_auto,c_limit,w_1440,q_auto/t_16by9Centre";
         $link = preg_replace($pattern, "$1{$replacement}/fom-website", $link);
