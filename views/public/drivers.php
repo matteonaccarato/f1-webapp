@@ -9,7 +9,7 @@ require_once ("views/partials/public/drivers_cards.php");
 require_once("controllers/auth/auth.php");
 
 const COL_CARD = "col-12 col-sm-6 col-lg-4 col-xl-3";
-define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "\\DB\backup\\drivers.json");
+define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "\\DB\backup\\drivers\\drivers.json");
 $info = ["Team", "Country", "Podiums", "Points", "Grands Prix entered", "World Championships",
     "Highest race finish", "Highest grid position", "Date of birth", "Place of birth"];
 

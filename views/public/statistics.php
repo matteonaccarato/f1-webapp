@@ -14,7 +14,7 @@ if(isset($_GET["year"]))
     $year = $_GET["year"];
 
 $BASE_URL_STATISTICS = "https://www.formula1.com/en/results.html/" . $year ."/races.html";
-define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "\\DB\backup\\statistics" . $year . ".json");
+define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "\\DB\backup\\statistics\\statistics" . $year . ".json");
 
 $lists = f1_scrape_stat($BASE_URL_STATISTICS);
 $loadFromDisk = 0;
