@@ -12,7 +12,7 @@
                                 <h6 class="card-title text-danger"><?php echo htmlentities($name_list[$i]); ?> </h6>
                                 <p class="card-title text-secondary"><?php echo htmlentities($team_list[$i]); ?> </p>
                                 <hr>
-                                <p class="d-flex justify-content-between"><strong>National: </strong><img style="position: relative; height: 20px; width: 30px" src="<?php echo $flag_list[$i] ?>" alt="Flag picture."></p>
+                                <p class="d-flex justify-content-between"><strong>Country: </strong><img style="position: relative; height: 20px; width: 30px" src="<?php echo $flag_list[$i] ?>" alt="Flag picture."></p>
                                 <p class="d-flex justify-content-between"><strong>Number: </strong><img style="position: relative; left:4px; height: 20px; width: 40px" src="<?php echo $number_list[$i] ?>" alt="Number picture."></p>
                                 <hr id="hr<?php echo $i; ?>">
                                 <div class="d-flex justify-content-center">
