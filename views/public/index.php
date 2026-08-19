@@ -10,7 +10,7 @@ require_once ("views/partials/alert.php");
 
 const COL_CARD = "col-12";
 
-define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "\\DB\backup\\news.json");
+define("BACKUP_FILE", $_SERVER['DOCUMENT_ROOT'] . "/DB/backup/news.json");
 $lists = f1_scrape_news(BASE_URL);
 $loadFromDisk = 0;
 foreach ($lists as $el) {
@@ -25,7 +25,7 @@ else
 
 [$title_list, $img_list, $link_list] = $lists;
 
-$json = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "\\views\\partials\\public\\index_cards.json");
+$json = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/views/partials/public/index_cards.json");
 $json_cards_data = json_decode($json, true);
 ?>
 

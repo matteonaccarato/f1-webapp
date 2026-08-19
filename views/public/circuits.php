@@ -11,7 +11,7 @@ require_once("controllers/auth/auth.php");
 const COL_CARD = "col-12 col-sm-6 col-lg-4 col-xl-3";
 
 // JSON required, instead of web scraping, in order to achieve accuracy in weather API location
-$circuits = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "\controllers\calendar\circuits.json"));
+$circuits = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/controllers/calendar/circuits.json"));
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +67,7 @@ $circuits = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "\controll
                         <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex align-items-stretch py-3">
                             <div class="card border border-danger border-3 p-2 d-flex flex-column justify-content-between">
                                 <div id="responsive<?php echo $i; ?>" class="card-img responsive">
-                                    <img id="img-responsive<?php echo $i;?>" src="<?php echo htmlentities($circuit->img_url); ?>" class="card-img-top img-responsive" alt="<?php echo htmlentities($circuit->alt); ?>">
+                                    <img id="img-responsive<?php echo $i;?>" src="<?php echo htmlentities($circuit->img_url ?? ''); ?>" class="card-img-top img-responsive" alt="<?php echo htmlentities($circuit->alt ?? ''); ?>">
                                 </div>
                                 <div style="max-width: 350px" class="card-body d-flex align-items-end">
                                     <div class="w-100">
