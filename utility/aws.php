@@ -3,7 +3,7 @@ if (!set_include_path("{$_SERVER['DOCUMENT_ROOT']}"))
     error("500", "set_include_path()");
 if(session_status() == PHP_SESSION_NONE) session_start();
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 
