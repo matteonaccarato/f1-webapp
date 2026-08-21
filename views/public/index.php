@@ -60,7 +60,7 @@ $json_cards_data = json_decode($json, true);
             </div>
             <div class="carousel-inner">
                 <?php
-                foreach (["stroll-canada-2.jpg", "alonso-canada.jpg", "austin.jpg"] as $index => $pic) { ?>
+                foreach (["13-sunday-barcelona-2026-scaled.jpg", "6-saturday-montreal-2026-Aangepast-scaled.jpg", "austin.jpg"] as $index => $pic) { ?>
                     <div class="carousel-item <?php echo $index == 0 ? "active" : "" ?>">
                         <img src="<?php echo "/f1-webapp/assets/images/" . $pic ?>" class="d-block w-100 img-carousel rounded" alt="F1 car and track">
                     </div>
@@ -84,7 +84,7 @@ $json_cards_data = json_decode($json, true);
         <section class="home-cards row d-flex justify-content-around gap-5 gap-md-0">
 
             <!-- News -->
-            <div style="border-radius: 10px; background: rgba(87, 87, 87, .6); " class="col-12 order-2 col-md-4 order-md-1 d-flex justify-content-center flex-column">
+            <div style="border-radius: 10px; background: rgba(87, 87, 87, .6); " class="col-12 order-2 col-md-4 order-md-1 d-flex justify-content-start flex-column">
                 <span class="title text-light pt-2">
                     <span class="text-light h2">
                         News

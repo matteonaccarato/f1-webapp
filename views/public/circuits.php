@@ -17,7 +17,7 @@ $circuits = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/controll
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Calendar 2024</title>
+    <title>Calendar 2026</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="/f1-webapp/assets/css/style.css">

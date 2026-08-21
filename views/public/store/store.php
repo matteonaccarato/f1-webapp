@@ -25,7 +25,7 @@ $team_filter = (isset($_GET["team"]) && $_GET["team"])? ("WHERE team_id = " . $_
                 Teams.id AS 'Teams.id', Teams.name AS 'Teams.name', Teams.color_rgb_value AS 'Teams.color_rgb_value' 
             FROM Products JOIN Teams ON Products.team_id = Teams.id 
             $team_filter 
-            ORDER BY Products.id DESC;",
+            ORDER BY Teams.id ASC;",
     "\\views\public\store\store.php",
     "/f1-webapp/views/public/index.php");
 if (!$conn->close()) {

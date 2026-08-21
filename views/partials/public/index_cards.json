@@ -1,7 +1,7 @@
 [
   {
     "title": "Circuits",
-    "text": "In this section you can see <strong>all</strong> the 2024 F1 circuits.",
+    "text": "In this section you can see <strong>all</strong> the 2026 F1 circuits.",
     "img_url": "/f1-webapp/assets/images/USA_Circuit.png",
     "link": "/views/public/circuits.php",
     "alt": "Austin Circuit"
@@ -16,14 +16,14 @@
   {
     "title": "Drivers",
     "text": "Discover the secrets of your favorite Drivers <strong>:)</strong>",
-    "img_url": "/f1-webapp/assets/images/f1-2024-drivers.jpg",
+    "img_url": "/f1-webapp/assets/images/drivers-2026.jpeg",
     "link": "/f1-webapp/views/public/drivers.php",
     "alt": "Group photo of all twenty drivers. Standing pose with race suits, everyone has his hands behind his body."
   },
   {
     "title": "Teams",
-    "text": "Discover the <strong>Teams</strong> which will race in 2024",
-    "img_url": "/f1-webapp/assets/images/f1-2024-teams.jpg",
+    "text": "Discover the <strong>Teams</strong> which will race in 2026",
+    "img_url": "/f1-webapp/assets/images/f1-teams-2026.jpeg",
     "link": "/f1-webapp/views/public/teams.php",
     "alt": "Collage of all ten team cars. From top-left to bottom-right: Ferrari, Mercedes, McLaren, Red Bull, AlphaTauri, Alpine, Hass, Aston Martin, Alfa Romeo and Williams"
   },

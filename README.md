@@ -41,7 +41,7 @@ Install useful dependencies
 <hr>
 
 #### Circuits
-![Circuits page](./assets/images/readme/circuits.PNG)
+![Circuits page](./assets/images/readme/circuits.png)
 <hr>
 
 #### Store
