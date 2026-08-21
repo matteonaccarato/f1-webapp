@@ -2,12 +2,11 @@
 if (!set_include_path("{$_SERVER['DOCUMENT_ROOT']}"))
     error("500", "set_include_path()");
 
-const BASE_URL = "https://www.formula1.com/en/drivers.html";
+const BASE_URL = "https://www.formula1.com/en/drivers";
 const BASE_F1 = "https://www.formula1.com";
 
 function f1_scrape_drivers($base_url): array {
 
-    // Init arrays of interest
     $team_list = [];
     $img_list = [];
     $number_list = [];
@@ -16,51 +15,121 @@ function f1_scrape_drivers($base_url): array {
     $url_list = [];
 
     $page = file_get_contents($base_url);
+
+    if ($page === false) {
+        die("Could not retrieve page");
+    }
+
     $html = new DOMDocument();
-    @$html->loadHtml($page);
+    @$html->loadHTML($page);
     $xpath = new DOMXPath($html);
 
-    // TEAMS
-    $node_list = $xpath->query('//p[@class="f1-heading tracking-normal text-fs-12px leading-tight normal-case font-normal non-italic f1-heading__body font-formulaOne text-greyDark"]');
-    foreach ($node_list as $n) {
-        $team = $n->nodeValue;
-        $team_list[] = $team;
-    }
+    /*
+     * Each driver card is an <a> whose href starts with /en/drivers/
+     */
+    $driver_cards = $xpath->query(
+        '//a[starts-with(@href, "/en/drivers/")]'
+    );
 
-    // NAMES
-    $node_list = $xpath->query('//div[contains(@class, "f1-driver-name")]');
-    foreach ($node_list as $n) {
-        $name = "";
-        foreach ($n->childNodes as $n_inner) {
-            $name .=  $n_inner->nodeValue . " ";
+    foreach ($driver_cards as $card) {
+
+        /*
+         * URL
+         */
+        $url_list[] = BASE_F1 . $card->getAttribute('href');
+
+
+        /*
+         * NAME
+         *
+         * The name is available in the driver-card context:
+         * data-f1rd-a7s-context
+         *
+         * Example:
+         * ..."driverName":"Kimi Antonelli","driverTeam":"Mercedes"...
+         */
+        $context = $card->getAttribute('data-f1rd-a7s-context');
+
+        $data = json_decode($context, true);
+
+        if (isset($data['driverName'])) {
+            $name_list[] = $data['driverName'];
+        } else {
+            $name_list[] = '';
         }
 
-        $name_list[] = $name;
-    }
 
-    // FLAGS
-    $node_list = $xpath->query('//img[@class="f1-c-image h-[2em] ml-auto mr-0 border border-greyDark rounded-xxs"]');
-    foreach ($node_list as $node) {
-        $flag_list[] = $node->getAttribute("src");
-    }
+        /*
+         * TEAM
+         */
+        if (isset($data['driverTeam'])) {
+            $team_list[] = $data['driverTeam'];
+        } else {
+            $team_list[] = '';
+        }
 
-    // NUMBERS
-    $node_list = $xpath->query('//img[@class="f1-c-image f1-utils-square-block text-[6rem]"]');
-    foreach ($node_list as $node) {
-        $number_list[] = $node->getAttribute("src");
-    }
 
-    // IMGs
-    $node_list = $xpath->query('//img[@class="f1-c-image ml-0 mr-0 pr-s max-w-3/4"]');
-    foreach ($node_list as $node) {
-        $img_list[] = $node->getAttribute("src");
-    }
+        /*
+         * DRIVER IMAGE
+         */
+        $img = $xpath->query(
+            './/img[@role="presentation"]',
+            $card
+        )->item(0);
 
-    // Get EXTRA INFO
-    $node_list = $xpath->query('//a[@class="group focus-visible:outline-0"]');
-    foreach ($node_list as $node) {
-        $url_list[] = BASE_F1 . $node->getAttribute("href");
-    }
+        if ($img !== null) {
+            $img_list[] = $img->getAttribute('src');
+        } else {
+            $img_list[] = '';
+        }
 
-    return [$name_list, $team_list, $flag_list, $number_list, $img_list, $url_list];
+
+        /*
+         * FLAG
+         *
+         * Find SVG/image associated with the driver card.
+         */
+        $flag = $xpath->query(
+            './/img',
+            $card
+        );
+
+        $flag_src = '';
+
+        foreach ($flag as $img_node) {
+            $src = $img_node->getAttribute('src');
+
+            if ($src !== '') {
+                $flag_src = $src;
+                break;
+            }
+        }
+
+        $flag_list[] = $flag_src;
+
+
+        /*
+         * NUMBER
+         *
+         * Find the number image in this driver card.
+         */
+        $number = $xpath->query(
+            './/img[contains(@class, "h-em-24 w-em-96 bg-static-static-1")]',
+            $card
+        )->item(0);
+
+        if ($number !== null) {
+            $number_list[] = $number->getAttribute('src');
+        } else {
+            $number_list[] = '';
+        }
+    }
+    return [
+        $name_list,
+        $team_list,
+        $flag_list,
+        $number_list,
+        $img_list,
+        $url_list
+    ];
 }

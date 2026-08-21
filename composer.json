@@ -2,6 +2,7 @@
     "require": {
         "aws/aws-sdk-php": "^3.296",
       "ext-dom": "*",
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+      "ext-curl": "*"
     }
 }

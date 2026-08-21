@@ -6,51 +6,115 @@ if (!set_include_path("{$_SERVER['DOCUMENT_ROOT']}"))
     error("500", "set_include_path()");
 
 const BASE_URL = "https://www.formula1.com/en/latest/all";
+const BASE_F1 = "https://www.formula1.com";
+
 const MAX_NEWS_INDEX = 4;
 const MAX_NEWS_NEWS = 6;
 
 function f1_scrape_news($base_url): array {
 
-    // Init arrays of interest
     $title_list = [];
     $img_list = [];
     $link_list = [];
 
     $page = file_get_contents($base_url);
+
+    if ($page === false) {
+        die("Could not retrieve page");
+    }
+
     $html = new DOMDocument();
-    @$html->loadHtml($page);
+    @$html->loadHTML($page);
     $xpath = new DOMXPath($html);
 
-    $node_list = $xpath->query('//img[@class="absolute left-0 top-0 right-0 bottom-0 w-full group-hover:tablet:scale-110 group-focus:tablet:scale-110 transition-transform duration-200"]');
-    // Increasing by 2 each time because otherwise there would have been duplicates
-    // In this situation I obtain 7 news elements
-    for ($i=0; $i<MAX_NEWS_NEWS; $i += 1) {
-        if ($node_list->item($i) == null)
-            break;
-        $link = $node_list->item($i)->getAttribute("src");
+    $node_list = $xpath->query(
+        '//a[contains(@href, "/en/latest/article/")]'
+    );
 
-        // Normalize URL
-        $pattern = "/(https:\/\/media\.formula1\.com\/image\/upload\/)(.*?)\/fom-website/";
-        $replacement = "f_auto,c_limit,w_1440,q_auto/t_16by9Centre";
-        $link = preg_replace($pattern, "$1{$replacement}/fom-website", $link);
+    // Extract article-card images in page order.
+    preg_match_all(
+        '/<span[^>]*class="[^"]*ArticleListCard-module_image__[^"]*"[^>]*>.*?(https:\/\/media\.formula1\.com\/image\/upload\/[^"\'\\\\\s]+).*?<\/span>/s',
+        $page,
+        $image_matches
+    );
 
-        // Append in array
-        $img_list[] = $link;
+    $card_images = [];
+    foreach ($image_matches[1] as $image_url) {
+        $image_url = html_entity_decode($image_url);
+        $image_url = rtrim($image_url, "\\ \t\n\r");
+        $card_images[] = $image_url;
     }
 
-    // $node_list = $xpath->query('//figcaption[@class="px-5 tablet:pt-2 tablet:pb-[3rem] relative tablet:pt-2 tablet:pb-[3rem] transition-transform relative text-left col-span-3 tablet:col-span-5 group-hover:tablet:bg-carbonBlack group-focus:bg-carbonBlack    duration-300 group-hover:tablet:-translate-y-3 group-focus:tablet:-translate-y-3       "]');
-    $node_list = $xpath->query('//p[@class="font-titillium leading-none text-left text-12 group-hover:text-white group-focus:text-white leading-loose mt-1 text-16 font-light tablet:!text-18 tablet:!font-formula !leading-5 tablet:!leading-6         "]');
+    $image_index = 0;
+    foreach ($node_list as $node) {
+        // TITLE
+        $title = trim(
+            preg_replace(
+                '/\s+/',
+                ' ',
+                $node->textContent
+            )
+        );
 
-    foreach ($node_list as $n) {
-        $title = $n->nodeValue;
+        // LINK
+        $article_path = $node->getAttribute("href");
+        $link = str_starts_with($article_path, "/")
+            ? BASE_F1 . $article_path
+            : $article_path;
+
+        // IMAGE
+        $image_url = $card_images[$image_index] ?? "";
+        $image_index++;
+
+        // Skip quiz articles
+        if (stripos($title, 'QUIZ:') === 0) {
+            continue;
+        }
+
+        // Normalize image URL
+        if ($image_url !== "") {
+            $pattern =
+                '/(https:\/\/media\.formula1\.com\/image\/upload\/)(.*?)\/fom-website/';
+            $replacement =
+                'f_auto,c_limit,w_1440,q_auto/t_16by9Centre';
+            $image_url = preg_replace(
+                $pattern,
+                '$1' . $replacement . '/fom-website',
+                $image_url
+            );
+        }
+
         $title_list[] = $title;
-    }
-
-    $node_list = $xpath->query('//a[@class="group group-hover:bg-carbonBlack block border-gray-30 tablet:!border-0 py-4 tablet:py-0 tablet:rounded-b-2xl tablet:grid-rows-auto overflow-hidden outline-none grid grid-cols-5 tablet:grid-cols-none bg-transparent tablet:bg-white hover:bg-carbonBlack focus:bg-carbonBlack      bg-black tablet:!bg-carbon-black   "]');
-    foreach ($node_list as $n) {
-        $link = $n->getAttribute("href");
+        $img_list[] = $image_url;
         $link_list[] = $link;
+
+        // Maximum number of articles
+        if (count($title_list) >= MAX_NEWS_NEWS) {
+            break;
+        }
     }
 
-    return [$title_list, $img_list, $link_list];
+    $title_list = array_slice(
+        $title_list,
+        0,
+        MAX_NEWS_NEWS
+    );
+
+    $img_list = array_slice(
+        $img_list,
+        0,
+        MAX_NEWS_NEWS
+    );
+
+    $link_list = array_slice(
+        $link_list,
+        0,
+        MAX_NEWS_NEWS
+    );
+
+    return [
+        $title_list,
+        $img_list,
+        $link_list
+    ];
 }
