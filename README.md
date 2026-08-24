@@ -28,6 +28,13 @@ Updates submodules
 ### `composer install`
 Install useful dependencies
 
+### Testing and local DB with Docker
+
+1. Copy `.env.example` to `.env` if you want to override the default local connection values.
+2. Start the MySQL service:
+   `docker compose up -d mysql`
+
+The Docker Compose setup loads the database schema from `docker/mysql/init/schema.sql`, so the project can be validated with a disposable MySQL instance.
 
 ### SOURCES
 ☀️ [**OpenWeatherMap**](https://openweathermap.org/api) <br>

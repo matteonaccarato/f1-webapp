@@ -1,10 +1,35 @@
 <?php
+if (empty($_SERVER['DOCUMENT_ROOT'])) {
+    $_SERVER['DOCUMENT_ROOT'] = __DIR__ . "/..";
+}
+
 if (!set_include_path("{$_SERVER['DOCUMENT_ROOT']}"))
     error("500", "set_include_path()");
 
 require_once("utility/error_handling.php");
 
-$ini = parse_ini_file("config/keys.ini");
+function resolve_db_config(): array {
+    $ini = [];
+    if (file_exists("config/keys.ini")) {
+        $ini = parse_ini_file("config/keys.ini");
+    }
+
+    $vals = [
+        "hostname" => getenv("DB_HOST") ?: getenv("MYSQL_HOST") ?: ($_ENV["DB_HOST"] ?? $_ENV["MYSQL_HOST"] ?? ($ini["hostname"] ?? "127.0.0.1")),
+        "username" => getenv("DB_USERNAME") ?: getenv("MYSQL_USER") ?: ($_ENV["DB_USERNAME"] ?? $_ENV["MYSQL_USER"] ?? ($ini["username"] ?? "root")),
+        "password" => getenv("DB_PASSWORD") ?: getenv("MYSQL_PASSWORD") ?: ($_ENV["DB_PASSWORD"] ?? $_ENV["MYSQL_PASSWORD"] ?? ($ini["password"] ?? "")),
+        "database" => getenv("DB_DATABASE") ?: getenv("MYSQL_DATABASE") ?: ($_ENV["DB_DATABASE"] ?? $_ENV["MYSQL_DATABASE"] ?? ($ini["database"] ?? "f1_webapp")),
+        "port" => getenv("DB_PORT") ?: getenv("MYSQL_PORT") ?: ($_ENV["DB_PORT"] ?? $_ENV["MYSQL_PORT"] ?? ($ini["port"] ?? 3306)),
+    ];
+
+    foreach ($vals as $key => $value) {
+        if (is_string($value)) {
+            $vals[$key] = trim($value);
+        }
+    }
+
+    return $vals;
+}
 
 const USERS_ARRAY = ["id", "first_name", "last_name", "email", "password", "role", "date_of_birth", "cookie_id", "img_url", "newsletter"];
 const USERS_MAX_LENGTHS = [-1, 255, 255, 255, 255, -1, 10, 255, 255, -1];
@@ -27,12 +52,12 @@ class DB {
      * @return mysqli
      */
     public static function connect(string $source = "", string $redirect_error = ""): mysqli {
-        global $ini;
+        $ini = resolve_db_config();
 
         error_reporting(0);
         mysqli_report(MYSQLI_REPORT_OFF);
 
-        $conn = new mysqli($ini["hostname"], $ini["username"], $ini["password"], $ini["database"], $ini["port"]);
+        $conn = new mysqli($ini["hostname"], $ini["username"], $ini["password"], $ini["database"], (int) $ini["port"]);
         if ($conn->connect_errno) {
             error("500", "mysqli error: $conn->error", $source, $redirect_error);
             exit;
@@ -118,7 +143,7 @@ class DB {
      * @param string|null $order_delete_id => required if an order should also be deleted (e.g. You try to buy a product which has been recently deleted)
      * @return void
      */
-    public static function p_stmt_no_select(mysqli $conn, string $query, array $type_params, array $params, string $source = "", string $redirect_error = "", string $order_delete_id = null): void {
+    public static function p_stmt_no_select(mysqli $conn, string $query, array $type_params, array $params, string $source = "", string $redirect_error = "", ?string $order_delete_id = null): void {
 
         $stmt = self::p_stmt_bind_execute($conn, $query, $type_params, $params, $source, $redirect_error, $order_delete_id);
 
@@ -139,7 +164,7 @@ class DB {
      * @param string|null $order_delete_id
      * @return mysqli_stmt
      */
-    public static function p_stmt_bind_execute(mysqli $conn, string $query, array $type_params, array $params, string $source = "", string $redirect_error  = "", string $order_delete_id = null): mysqli_stmt {
+    public static function p_stmt_bind_execute(mysqli $conn, string $query, array $type_params, array $params, string $source = "", string $redirect_error  = "", ?string $order_delete_id = null): mysqli_stmt {
         $s_type_params = implode("", $type_params);
 
         if (!$stmt = $conn->prepare($query)) {

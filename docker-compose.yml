@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: f1-webapp-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: f1_webapp
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -proot --silent"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+
+volumes:
+  mysql_data:

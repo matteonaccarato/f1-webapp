@@ -3,7 +3,9 @@ if (!defined("BASE_INCLUDE_PATH")) {
     // define("BASE_INCLUDE_PATH", "/chroot/home/S5330843/public_html/f1-webapp/"); // on SERVER
     define("BASE_INCLUDE_PATH", $_SERVER["DOCUMENT_ROOT"]); // on LOCAL
 }
-if(session_status() == PHP_SESSION_NONE) session_start();
+if (PHP_SAPI !== "cli" && session_status() == PHP_SESSION_NONE && !headers_sent()) {
+    session_start();
+}
 
 $_DEFAULT_ERROR_REDIRECT = "/f1-webapp/views/public/index.php";
 

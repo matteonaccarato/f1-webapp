@@ -1,0 +1,1 @@
+{"version":2,"defects":{"DatabaseSchemaTest::testExpectedTablesExist":8,"DatabaseSchemaTest::testUsersTableContainsExpectedColumns":8,"DatabaseSchemaTest::testOrdersHaveAForeignKeyToUsers":8},"times":{"DatabaseSchemaTest::testExpectedTablesExist":0.015,"DatabaseSchemaTest::testUsersTableContainsExpectedColumns":0.012,"DatabaseSchemaTest::testOrdersHaveAForeignKeyToUsers":0.009}}
