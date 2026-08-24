@@ -33,8 +33,31 @@ Install useful dependencies
 1. Copy `.env.example` to `.env` if you want to override the default local connection values.
 2. Start the MySQL service:
    `docker compose up -d mysql`
+3. Run tests:
+   `vendor/bin/phpunit --configuration phpunit.xml`
 
 The Docker Compose setup loads the database schema from `docker/mysql/init/schema.sql`, so the project can be validated with a disposable MySQL instance.
+
+### Reuse this pipeline from `formula1-info`
+
+The workflow `.github/workflows/phpunit.yml` supports `workflow_call`, so a parent repository can execute the same tests.
+
+Example caller workflow in `formula1-info`:
+
+```yaml
+name: f1-webapp tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  f1-webapp-phpunit:
+    uses: matteonaccarato/f1-webapp/.github/workflows/phpunit.yml@main
+    with:
+      project_path: f1-webapp
+      php_version: "8.2"
+```
 
 ### SOURCES
 ☀️ [**OpenWeatherMap**](https://openweathermap.org/api) <br>

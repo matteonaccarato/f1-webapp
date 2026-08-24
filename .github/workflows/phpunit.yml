@@ -5,6 +5,18 @@ on:
     branches:
       - "**"
   pull_request:
+  workflow_call:
+    inputs:
+      project_path:
+        description: "Path of the PHP project root (use f1-webapp when called from formula1-info)"
+        required: false
+        default: "."
+        type: string
+      php_version:
+        description: "PHP version used by the test job"
+        required: false
+        default: "8.2"
+        type: string
 
 jobs:
   phpunit:
@@ -17,15 +29,16 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.2"
+          php-version: ${{ inputs.php_version || '8.2' }}
           extensions: dom, curl, mysqli, pdo_mysql
           tools: composer:v2
 
       - name: Install PHP dependencies
+        working-directory: ${{ inputs.project_path || '.' }}
         run: composer install --no-interaction --prefer-dist --no-progress
 
       - name: Start MySQL with Docker Compose
-        run: docker compose up -d mysql
+        run: docker compose -f "${{ inputs.project_path || '.' }}/docker-compose.yml" up -d mysql
 
       - name: Wait for MySQL healthcheck
         run: |
@@ -42,6 +55,7 @@ jobs:
           exit 1
 
       - name: Run PHPUnit
+        working-directory: ${{ inputs.project_path || '.' }}
         env:
           DB_HOST: 127.0.0.1
           DB_USERNAME: admin
