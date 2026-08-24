@@ -27,6 +27,20 @@ jobs:
       - name: Start MySQL with Docker Compose
         run: docker compose up -d mysql
 
+      - name: Wait for MySQL healthcheck
+        run: |
+          for i in {1..30}; do
+            health=$(docker inspect --format='{{.State.Health.Status}}' f1-webapp-mysql || true)
+            if [ "$health" = "healthy" ]; then
+              echo "MySQL is healthy"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "MySQL did not become healthy in time"
+          docker compose logs mysql
+          exit 1
+
       - name: Run PHPUnit
         env:
           DB_HOST: 127.0.0.1

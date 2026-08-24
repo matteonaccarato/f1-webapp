@@ -57,12 +57,29 @@ class DB {
         error_reporting(0);
         mysqli_report(MYSQLI_REPORT_OFF);
 
-        $conn = new mysqli($ini["hostname"], $ini["username"], $ini["password"], $ini["database"], (int) $ini["port"]);
-        if ($conn->connect_errno) {
-            error("500", "mysqli error: $conn->error", $source, $redirect_error);
+        $conn = mysqli_init();
+        if (!$conn) {
+            error("500", "mysqli_init failed", $source, $redirect_error);
             exit;
         }
-        $conn->set_charset("utf8mb4");
+
+        $connected = $conn->real_connect(
+            $ini["hostname"],
+            $ini["username"],
+            $ini["password"],
+            $ini["database"],
+            (int) $ini["port"]
+        );
+        if (!$connected || $conn->connect_errno) {
+            error("500", "mysqli connect error ({$conn->connect_errno}): {$conn->connect_error}", $source, $redirect_error);
+            exit;
+        }
+
+        if (!$conn->set_charset("utf8mb4")) {
+            error("500", "mysqli set_charset error: $conn->error", $source, $redirect_error);
+            exit;
+        }
+
         if ($conn->errno) {
             error("500", "mysqli error: $conn->error", $source, $redirect_error);
             exit;

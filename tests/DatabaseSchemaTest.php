@@ -17,7 +17,9 @@ final class DatabaseSchemaTest extends TestCase
 
     protected function tearDown(): void
     {
-        $this->connection->close();
+        if (isset($this->connection) && $this->connection instanceof mysqli) {
+            @$this->connection->close();
+        }
     }
 
     public function testExpectedTablesExist(): void
